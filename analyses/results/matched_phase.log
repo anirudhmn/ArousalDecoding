@@ -1,0 +1,67 @@
+==============================================================================
+Matched-phase course discrimination
+==============================================================================
+
+Calibration block (condition 0) - the decoder's training set
+ring_size         large  medium  small   All
+trial_difficulty                            
+easy               2025    1658    405  4088
+All                2025    1658    405  4088
+  trials: 136
+
+Closed-loop block (conditions 1-3) - where it is applied
+ring_size         large  medium  small   All
+trial_difficulty                            
+easy               2662    2334    691  5687
+hard               2543    1107     56  3706
+All                5205    3441    747  9393
+
+Ring diameters differ between courses: easy large/medium/small = 108/72/36, hard = 60/30/14.4.
+
+------------------------------------------------------------------------------
+Within the hard course: does arousal track ring size, or just time?
+------------------------------------------------------------------------------
+   arousal ~ sz             beta_size= +23.91  p=6.15e-181
+   arousal ~ sz + t_s       beta_size=  +1.30  p=3.65e-01
+   -> ring size adds nothing once elapsed time is controlled;
+      do not cite ring-size tracking as evidence.
+
+------------------------------------------------------------------------------
+Across courses at matched elapsed time (hard rings are smaller at
+every time point). A pure time-ramp predicts beta_hard = 0.
+------------------------------------------------------------------------------
+
+index       model                               beta_hard            p
+peripheral  all crossings, + time                   +6.41     1.07e-32
+peripheral  all crossings, + time + time^2          +6.71     1.59e-35
+peripheral  large rings only, + time                +6.58     1.40e-31
+
+motor       all crossings, + time                   +1.15     3.72e-02
+motor       all crossings, + time + time^2          +0.59     2.86e-01
+motor       large rings only, + time                +1.84     5.72e-03
+
+------------------------------------------------------------------------------
+Mean decoded arousal by elapsed-time bin (hard minus easy)
+------------------------------------------------------------------------------
+
+  peripheral:
+difficulty     0     1  hard - easy
+bin                                
+(0, 10]      9.0  11.8          2.8
+(10, 20]    10.8  18.6          7.8
+(20, 30]    18.6  26.2          7.6
+(30, 40]    31.4  36.9          5.5
+(40, 50]    39.2  46.4          7.2
+(50, 90]    55.6  58.0          2.3
+
+  motor:
+difficulty     0     1  hard - easy
+bin                                
+(0, 10]     26.7  27.3          0.6
+(10, 20]    36.5  37.0          0.6
+(20, 30]    45.6  46.5          0.9
+(30, 40]    57.1  50.6         -6.5
+(40, 50]    59.4  49.5        -10.0
+(50, 90]    62.0  45.5        -16.5
+
+wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/matched_phase_summary.csv

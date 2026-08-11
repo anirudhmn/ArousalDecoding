@@ -1,0 +1,53 @@
+==============================================================================================
+Control parameters that vary within a trial
+==============================================================================================
+
+7573 one-second bins, 16 subjects, 11.4% within 5 s of a crash
+Outcome: crash within 5 s. Elapsed time controlled by 5 s-bin fixed effects.
+
+control parameter                            fires   AUC|t  AUC raw      beta         p      LRT
+above universal band (reference)             27.4%    57.8     49.9   +0.0511   7.3e-10     37.9
+above universal band, retuned x1.75          20.0%    57.8     48.3   +0.0499   5.2e-08     29.6
+above per-subject band (calibration SD)      27.4%    58.0     49.9   +0.0508   6.7e-10     38.0
+above ADAPTIVE band (trailing 10 s SD)       32.4%    56.1     51.5   +0.0365   3.4e-06     21.6
+sustained above band (>=3 s)                 21.1%    56.7     50.6   +0.0522   6.4e-09     33.6
+excess over universal band (graded)          27.4%    59.2     50.1   +0.0013   9.9e-09     32.8
+excess over ADAPTIVE band (graded)           32.4%    57.8     52.8   +0.0016   3.2e-11     43.9
+rate of change of arousal                    56.6%    50.3     50.1   +0.0001   9.2e-01      0.0
+
+----------------------------------------------------------------------------------------------
+Does the adaptive band add information beyond the fixed band?
+----------------------------------------------------------------------------------------------
+   + above_adaptive     on top of above_fixed    beta = -0.0037, LRT =    0.1, p = 7.70e-01
+   + sustained          on top of above_fixed    beta = +0.0224, LRT =    2.3, p = 1.28e-01
+   + rate               on top of above_fixed    beta = -0.0013, LRT =    5.0, p = 2.61e-02  *
+   + excess_adaptive    on top of excess_fixed   beta = +0.0020, LRT =   11.6, p = 6.56e-04  *
+
+----------------------------------------------------------------------------------------------
+Feedback interaction, as in hazard_model, for each band definition
+----------------------------------------------------------------------------------------------
+   fixed      above_fixed x full BCI: beta = -0.0317, p = 0.078
+   adaptive   above_adaptive x full BCI: beta = -0.0535, p = 0.002  *
+   sustained  sustained x full BCI: beta = -0.0530, p = 0.007  *
+
+==============================================================================================
+Reading
+==============================================================================================
+
+  The fixed band is the reference rule and the benchmark. A within-trial
+  parameter earns its place only if it adds information ON TOP of the fixed
+  band in the head-to-head section - a higher AUC on its own is not enough,
+  since a parameter that fires more often will score higher by base rate alone.
+
+  'fires' is the share of bins in which the parameter is non-zero. Compare it
+  against AUC: a rule that fires constantly is not a usable control signal even
+  if it discriminates, because a controller acting on it would intervene
+  permanently.
+
+  AUC|t is stratified by time bin; AUC raw is marginal and is reported only to
+  show how misleading it is. The two differ because elapsed time drives the
+  outcome and the band signals in opposing directions late in a trial - the
+  fitted trajectory rises, so nothing exceeds the band after ~45 s while the
+  crash rate stays high. Marginally the effect cancels to chance. Within time
+  bin, being above the band raises the 5 s crash rate by about 7 percentage
+  points, positive in 7 of 9 bins.

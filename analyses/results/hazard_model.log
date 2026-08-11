@@ -1,0 +1,84 @@
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+==================================================================================
+Within-trial hazard of crashing
+==================================================================================
+
+7573 one-second bins from 173 hard-course trials
+     6.9% are within 3s of a crash
+    11.4% are within 5s of a crash
+
+----------------------------------------------------------------------------------
+(a) Quadratic on arousal, under increasing control for elapsed time
+    a POSITIVE quadratic on hazard = U-shaped hazard = inverted-U for performance
+----------------------------------------------------------------------------------
+
+index       time control               beta_quad         p   LRT chi2         p   vertex
+peripheral  t linear                  +0.0000373   1.3e-16      128.1   1.6e-28     29.7
+peripheral  t + t^2 + t^3             +0.0000269   4.4e-09       91.9   1.1e-20     24.6
+peripheral  5 s-bin fixed effects     +0.0000280   3.5e-10      116.1   6.0e-26     23.0
+
+motor       t linear                  +0.0000493   6.2e-33      220.5   1.3e-48     35.6
+motor       t + t^2 + t^3             +0.0000430   2.7e-25      238.5   1.7e-52     30.2
+motor       5 s-bin fixed effects     +0.0000382   2.5e-21      239.9   8.1e-53     27.1
+
+----------------------------------------------------------------------------------
+Raw crash-within-5s rate (%) by arousal bin, within time strata
+(blank = fewer than 25 observations)
+----------------------------------------------------------------------------------
+arousal           0-10s        10-20s        20-30s        30-40s          40s+
+0-10          0.6(1398)     0.0( 941)     6.6( 679)    27.4( 292)    27.2( 151)
+10-20         0.0( 160)     1.9( 207)     6.8( 234)    22.1( 136)    28.4( 116)
+20-30         1.2(  84)     1.6( 128)     7.8( 153)    21.0( 124)    19.4( 124)
+30-40         0.0(  73)     1.0(  96)     9.8( 122)    15.6(  90)    20.5(  78)
+40-50         0.0(  43)     3.8(  79)     8.8( 114)    27.0(  89)    34.9(  83)
+50-60         0.0(  50)     2.6(  76)     9.6(  73)    16.7(  72)    36.8(  87)
+60-70         3.7(  27)     7.3(  41)    20.3(  64)    24.7(  85)    39.2(  74)
+70+           1.5(  65)     3.8( 132)    20.8( 221)    32.3( 263)    39.4( 449)
+
+-> the dominant pattern is monotone: higher arousal, higher risk.
+   The parametric U-shape rests on weak elevation at very low
+   arousal late in trials, so do not overstate the left limb.
+
+----------------------------------------------------------------------------------
+(c) Does being above the band predict imminent failure, and does
+    feedback attenuate that link?
+----------------------------------------------------------------------------------
+   above-band effect on 5 s crash hazard: b = +0.0343, p = 3.60e-05
+
+   by feedback condition (reference = condition 1, silence):
+     above (silence)        b = +0.0498   p = 0.000
+       x half-sham          b = -0.0123   p = 0.507
+       x full BCI           b = -0.0381   p = 0.040
+
+   -> the above-band to failure link is significantly weaker under
+      full BCI feedback, which is a positive result in a place
+      where the trajectory comparison only yields a null.
+
+wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/hazard_model_summary.csv

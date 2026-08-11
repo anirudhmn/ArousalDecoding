@@ -1,0 +1,35 @@
+==========================================================================
+(a) Dropping the half-sham condition from the trajectory fit
+==========================================================================
+  cond 1+2 (primary)       n=113  fitted bins=39  r=+0.308 (p=0.0009)  d=0.85
+  cond 1 only (silence)    n= 52  fitted bins=28  r=+0.251 (p=0.0722)  d=0.80
+  fit silence -> test half n= 61                 r=+0.171 (p=0.1879)
+
+==========================================================================
+(b) Recomputing gamma as band power instead of filtered-signal mean
+==========================================================================
+
+per-subject gamma, old (signal mean) vs new (power):
+  old: range [-2.55e-05, 9.18e-05]
+  new: range [0.0240, 0.4126]
+  rank correlation between them: +0.453
+
+Yerkes-Dodson interactions with the recomputed features:
+  arousal^2 x hrv    beta=+1.0991  p=0.0174
+  arousal^2 x gamma  beta=+0.6743  p=0.1341
+
+  group sizes: sensitive 7 subjects, tolerant 9 subjects
+  sensitive  r=+0.365 (p=0.0085)  best m=2.0 (d=1.17)
+  tolerant   r=+0.263 (p=0.0390)  best m=1.75 (d=1.01)
+
+  subjects changing group: 3 of 16
+
+==========================================================================
+(c) Trimming the decoder warm-up from trial-mean arousal
+==========================================================================
+dropped     r(len,arousal)   beta quad    p easy    p hard       opt E/H
+0                   +0.220      -2.562   4.7e-05   1.1e-03    52.2/ 50.8
+1                   +0.209      -2.503   4.3e-05   7.0e-04    52.4/ 50.7
+2                   +0.199      -2.452   4.2e-05   5.7e-04    52.5/ 50.8
+3                   +0.191      -2.398   4.9e-05   5.4e-04    52.6/ 51.1
+5                   +0.177      -2.326   5.4e-05   5.0e-04    52.8/ 51.9

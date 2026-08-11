@@ -1,0 +1,79 @@
+family,test,p,source,primary,p_holm,survives
+decoder comparisons,peripheral vs EEG (within-subject),8.7e-06,decoding,False,4.35e-05,True
+decoder comparisons,combined vs EEG (within-subject),4.2e-07,decoding,False,2.96e-06,True
+decoder comparisons,combined vs peripheral (within-subject),0.016,decoding,False,0.032,True
+decoder comparisons,peripheral vs motor,0.00049,negative_controls,False,0.00147,True
+decoder comparisons,peripheral vs shuffled,1.95e-14,negative_controls,False,1.7549999999999998e-13,True
+decoder comparisons,LOSO peripheral vs chance,3.7e-07,loso_decoder,False,2.96e-06,True
+decoder comparisons,LOSO EEG vs chance,1.1e-06,loso_decoder,False,6.6e-06,True
+decoder comparisons,within-subject vs LOSO,1.3e-05,loso_decoder,False,5.2e-05,True
+decoder comparisons,LOSO peripheral vs EEG,0.1726,loso_decoder,False,0.1726,False
+label controls,real vs shift2 (6.7% of labels changed),0.335,label_controls,False,0.335,False
+label controls,real vs cross-trial (0.9% changed),0.0952,label_controls,False,0.23399999999999999,False
+label controls,real vs phase-perm (0.8% changed),0.048,label_controls,False,0.192,False
+label controls,real vs block-perm (0.0% changed),0.078,label_controls,False,0.23399999999999999,False
+label controls,real vs reversed (79.5% changed),0.000388,label_controls,False,0.0019399999999999999,True
+validity,"matched-phase, all crossings + time",1.07e-32,matched_phase,True,2.14e-32,True
+validity,"matched-phase, + time^2",1.59e-35,matched_phase,False,4.7699999999999995e-35,True
+validity,"matched-phase, large rings only",1.4e-31,matched_phase,False,1.4e-31,True
+Yerkes-Dodson,"trial-mean quadratic, duration-stratified permutation",0.0125,duration_permutation,True,0.025,True
+Yerkes-Dodson,landmark analysis at L = 30 s,0.0328,landmark_analysis,False,0.0328,True
+Yerkes-Dodson,"hazard quadratic, 5 s-bin fixed effects",3.5e-10,hazard_model,False,1.0499999999999999e-09,True
+Table 1,% time above band,0.0001,clustered_statistics,False,0.0004,True
+Table 1,% time in band,0.0001,clustered_statistics,False,0.0004,True
+Table 1,mean excursion magnitude,0.0097,clustered_statistics,False,0.0097,True
+Table 1,excursion rate,0.0001,clustered_statistics,False,0.0004,True
+a priori (family of one),arousal^2 x HRV,0.0174,t3/vagal_composite,True,0.0174,True
+calibration screen (17 measures),calibration arousal SD,0.0016,calibration_profile,False,0.027200000000000002,True
+calibration screen (17 measures),respiration,0.0022,calibration_profile,False,0.0352,True
+calibration screen (17 measures),HRV,0.0174,calibration_profile,False,0.261,False
+calibration screen (17 measures),theta/beta,0.028,calibration_profile,False,0.392,False
+calibration screen (17 measures),calibration level,0.0293,calibration_profile,False,0.392,False
+calibration screen (17 measures),gamma (real power),0.0362,calibration_profile,False,0.4344,False
+calibration screen (17 measures),calibration volatility,0.0381,calibration_profile,False,0.4344,False
+calibration screen (17 measures),calibration IQR,0.042,calibration_profile,False,0.4344,False
+calibration screen (17 measures),HRV SD,0.0485,calibration_profile,False,0.4365,False
+calibration screen (17 measures),alpha,0.1043,calibration_profile,False,0.8344,False
+calibration screen (17 measures),heart rate,0.3361,calibration_profile,False,1.0,False
+calibration screen (17 measures),theta,0.3374,calibration_profile,False,1.0,False
+calibration screen (17 measures),calibration frac-high,0.3611,calibration_profile,False,1.0,False
+calibration screen (17 measures),beta,0.5571,calibration_profile,False,1.0,False
+calibration screen (17 measures),EDA tonic,0.7586,calibration_profile,False,1.0,False
+calibration screen (17 measures),pupil,0.8356,calibration_profile,False,1.0,False
+calibration screen (17 measures),EDA phasic,0.884,calibration_profile,False,1.0,False
+group moderation,continuous sensitivity x %in-band,0.0766,clustered_statistics,True,0.3064,False
+group moderation,median-split group x %in-band,0.4346,clustered_statistics,False,0.8692,False
+group moderation,universal vs personalised band x %in-band,0.2886,clustered_statistics,False,0.8658000000000001,False
+group moderation,"per-subject slopes, sensitive vs tolerant",0.739,clustered_statistics,False,0.8692,False
+held-out control bands,retuned universal vs default,0.064,band_scheme_comparison,False,0.5760000000000001,False
+held-out control bands,group widths (composite) vs default,0.194,band_scheme_comparison,False,1.0,False
+held-out control bands,group widths (calibration marker) vs default,0.354,band_scheme_comparison,False,1.0,False
+held-out control bands,centre from fitted curve vs default,0.407,band_scheme_comparison,False,1.0,False
+held-out control bands,width from fitted curve vs default,0.292,band_scheme_comparison,False,1.0,False
+held-out control bands,group widths (composite) vs retuned,0.806,band_scheme_comparison,False,1.0,False
+held-out control bands,group widths (calibration marker) vs retuned,0.752,band_scheme_comparison,False,1.0,False
+held-out control bands,centre from fitted curve vs retuned,0.907,band_scheme_comparison,False,1.0,False
+held-out control bands,width from fitted curve vs retuned,0.344,band_scheme_comparison,False,1.0,False
+individual reactivity,random slope on excess above fixed band,4.02e-10,individual_reactivity,False,1.608e-09,True
+individual reactivity,random slope on excess above adaptive band,1.06e-17,individual_reactivity,False,5.3000000000000005e-17,True
+individual reactivity,excess x respiration,0.0003,individual_reactivity,False,0.0009,True
+individual reactivity,excess x calibration arousal SD,0.0041,individual_reactivity,False,0.0082,True
+individual reactivity,excess x HRV,0.0429,individual_reactivity,False,0.0429,True
+within-trial control,graded excess over adaptive band,0.000656,within_trial_control,True,0.002624,True
+within-trial control,binary adaptive band,0.77,within_trial_control,False,0.77,False
+within-trial control,sustained excursion (>= 3 s),0.128,within_trial_control,False,0.256,False
+within-trial control,rate of change of arousal,0.0261,within_trial_control,False,0.07830000000000001,False
+reliability,random slope on arousal (LRT),0.0384,optimum_reliability,False,0.0768,False
+reliability,band-width split-half agreement (Spearman),0.843,optimum_reliability,False,0.843,False
+feedback effects,"failure-locked rise, paired t",1.7e-11,failure_locked_arousal,True,5.1e-11,True
+feedback effects,failure-locked rise by condition (ANOVA),0.155,failure_locked_arousal,False,0.155,False
+feedback effects,above-band x full BCI on 5 s hazard,0.04,hazard_model,False,0.08,False
+trajectory clusters,hard: omnibus,0.2741,cluster_permutation,False,0.6627000000000001,False
+trajectory clusters,hard: BCI vs silence,0.269,cluster_permutation,False,0.6627000000000001,False
+trajectory clusters,hard: BCI vs half-sham,0.0228,cluster_permutation,False,0.0912,False
+trajectory clusters,hard: BCI vs half-sham (2nd cluster),0.2209,cluster_permutation,False,0.6627000000000001,False
+external validation,HR,5.34e-09,external_validation,False,2.67e-08,True
+external validation,HRV-pNN35,0.000193,external_validation,False,0.000579,True
+external validation,EDA-phasic,2.24e-06,external_validation,False,8.96e-06,True
+external validation,EDA-tonic,0.091,external_validation,False,0.091,False
+external validation,Pupil,0.000288,external_validation,False,0.000579,True

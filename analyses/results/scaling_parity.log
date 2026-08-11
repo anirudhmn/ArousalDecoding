@@ -1,0 +1,80 @@
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/base/model.py:607: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn("Maximum Likelihood optimization failed to "
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2200: ConvergenceWarning: Retrying MixedLM optimization with lbfgs
+  warnings.warn(
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/base/model.py:607: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn("Maximum Likelihood optimization failed to "
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2200: ConvergenceWarning: Retrying MixedLM optimization with cg
+  warnings.warn(
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/base/model.py:607: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn("Maximum Likelihood optimization failed to "
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2206: ConvergenceWarning: MixedLM optimization failed, trying a different optimizer may help.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2218: ConvergenceWarning: Gradient optimization failed, |grad| = 7.554877
+  warnings.warn(msg, ConvergenceWarning)
+================================================================================================
+(a) Yerkes-Dodson fit under matched scaling
+================================================================================================
+
+index                             scaling                               beta_quad    p_easy    p_hard    dAIC     opt
+peripheral (per-subject)          per-subject percentile + clip + IIR      -2.562  4.69e-05  1.10e-03   -18.6    50.8 *
+peripheral, per-trial minmax      REVERSE TEST                             -1.707  4.23e-02  2.13e-01    -1.1    59.2 *
+EEG (per-trial)                   per-trial min-max                        -1.298  9.66e-02  4.10e-01    +0.8    76.0
+EEG, per-trial minmax (rebuilt)   reproduces the stored column             -1.298  9.66e-02  4.10e-01    +0.8    76.0
+EEG, per-subject percentile       matches peripheral scaling               -0.455  4.50e-01  3.02e-01    +2.5    84.7
+EEG, per-subject + IIR + warm-up  full pipeline parity                     -0.462  4.52e-01  6.44e-01    +3.3   144.3
+EEG, native units                 no scaling at all                    -14245.405  2.17e-02  5.80e-01    -2.0    -0.8 *
+
+(* = negative quadratic, significant on the easy course, and the
+ quadratic model beats the linear one)
+
+------------------------------------------------------------------------------------------------
+Between-trial variance in the trial mean (the predictor in equation 1)
+------------------------------------------------------------------------------------------------
+
+index                                SD of trial means   SD within subject
+peripheral (per-subject)                         17.51               12.31
+peripheral, per-trial minmax                     14.97               10.74
+EEG (per-trial)                                  15.93               13.44
+EEG, per-trial minmax (rebuilt)                  15.93               13.44
+EEG, per-subject percentile                      19.20               17.97
+EEG, per-subject + IIR + warm-up                 18.97               17.75
+EEG, native units                                 0.18                0.14
+
+Per-trial min-max scaling removes level information by construction;
+what is left is trace shape.
+
+================================================================================================
+(b) matched-phase course discrimination, all indices
+================================================================================================
+
+A pure time-ramp predicts beta_hard = 0. Hard rings are smaller than
+easy rings at every elapsed time.
+
+index                             model                           beta_hard            p       n
+peripheral (per-subject)          all crossings, + time               +6.41     1.07e-32    9041
+peripheral (per-subject)          all crossings, + time + t^2         +6.71     1.59e-35    9041
+peripheral (per-subject)          large rings only, + time            +6.58     1.40e-31    4853
+
+peripheral, per-trial minmax      all crossings, + time               +9.42     9.97e-58    9041
+peripheral, per-trial minmax      all crossings, + time + t^2         +9.64     4.06e-60    9041
+peripheral, per-trial minmax      large rings only, + time            +9.76     5.97e-50    4853
+
+EEG (per-trial)                   all crossings, + time               +4.77     1.66e-16    9041
+EEG (per-trial)                   all crossings, + time + t^2         +4.55     4.26e-15    9041
+EEG (per-trial)                   large rings only, + time            +2.30     1.37e-03    4853
+
+EEG, per-trial minmax (rebuilt)   all crossings, + time               +4.77     1.66e-16    9041
+EEG, per-trial minmax (rebuilt)   all crossings, + time + t^2         +4.55     4.26e-15    9041
+EEG, per-trial minmax (rebuilt)   large rings only, + time            +2.30     1.37e-03    4853
+
+EEG, per-subject percentile       all crossings, + time               +1.56     6.12e-03    9041
+EEG, per-subject percentile       all crossings, + time + t^2         +1.52     8.13e-03    9041
+EEG, per-subject percentile       large rings only, + time            -0.73     2.83e-01    4853
+
+EEG, per-subject + IIR + warm-up  all crossings, + time               +1.31     1.86e-02    9041
+EEG, per-subject + IIR + warm-up  all crossings, + time + t^2         +1.19     3.26e-02    9041
+EEG, per-subject + IIR + warm-up  large rings only, + time            -0.83     2.10e-01    4853
+
+
+wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/scaling_parity_yerkes.csv and /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/scaling_parity_matched_phase.csv

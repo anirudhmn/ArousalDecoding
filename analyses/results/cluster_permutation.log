@@ -1,0 +1,89 @@
+====================================================================================
+Cluster-based permutation, hard course
+====================================================================================
+
+  16 subjects with all three conditions, 30 one-second bins, 10000 permutations
+  mean arousal by condition: silence 17.2, half-sham 21.6, full BCI 20.0
+
+  hard course: omnibus across three conditions
+    cluster-forming threshold 3.316  (df (2, 30))
+    cluster 1: bins 4-6 s, mass 7.24, p = 0.2741
+    null max-cluster mass: 95th pct 22.65, max 101.12
+
+  hard course: full BCI vs silence
+    cluster-forming threshold 2.131  (df 15)
+    cluster 1: bins 17-19 s, mass 4.61, p = 0.2690
+    null max-cluster mass: 95th pct 13.82, max 40.60
+
+  hard course: full BCI vs half-sham
+    cluster-forming threshold 2.131  (df 15)
+    cluster 1: bins 0-7 s, mass 17.79, p = 0.0228  *
+    cluster 2: bins 8-10 s, mass 4.78, p = 0.2209
+    null max-cluster mass: 95th pct 13.12, max 51.18
+
+  hard course: half-sham vs silence
+    cluster-forming threshold 2.131  (df 15)
+    no supra-threshold clusters
+    null max-cluster mass: 95th pct 13.29, max 45.06
+
+====================================================================================
+Cluster-based permutation, easy course
+====================================================================================
+
+  15 subjects with all three conditions, 30 one-second bins, 10000 permutations
+  mean arousal by condition: silence 12.4, half-sham 14.3, full BCI 14.2
+
+  easy course: omnibus across three conditions
+    cluster-forming threshold 3.340  (df (2, 28))
+    no supra-threshold clusters
+    null max-cluster mass: 95th pct 23.71, max 83.21
+
+  easy course: full BCI vs silence
+    cluster-forming threshold 2.145  (df 14)
+    no supra-threshold clusters
+    null max-cluster mass: 95th pct 13.90, max 53.16
+
+  easy course: full BCI vs half-sham
+    cluster-forming threshold 2.145  (df 14)
+    no supra-threshold clusters
+    null max-cluster mass: 95th pct 12.39, max 34.64
+
+  easy course: half-sham vs silence
+    cluster-forming threshold 2.145  (df 14)
+    no supra-threshold clusters
+    null max-cluster mass: 95th pct 12.06, max 33.24
+
+====================================================================================
+Family-wise correction across all 8 trajectory tests
+====================================================================================
+
+test                                                 p      Holm
+hard course: omnibus across three conditions    0.2741    0.6627
+hard course: full BCI vs silence                0.2690    0.6627
+hard course: full BCI vs half-sham              0.0228    0.0912
+hard course: full BCI vs half-sham              0.2209    0.6627
+
+Cluster-level p-values already control FWE across time within a
+test; this second correction covers the eight tests themselves.
+
+====================================================================================
+Sensitivity of the hard-course BCI-vs-silence test
+====================================================================================
+
+  How large a sustained difference would this design have caught?
+    observed difference: mean +2.76, per-bin between-subject SD 16.26, SD of subject means 9.69, SE 2.42
+    sustained offset of  0.2 arousal points: power 0.07
+    sustained offset of  0.5 arousal points: power 0.08
+    sustained offset of  1.0 arousal points: power 0.10
+    sustained offset of  1.5 arousal points: power 0.08
+    sustained offset of  2.0 arousal points: power 0.13
+    sustained offset of  3.0 arousal points: power 0.20
+    sustained offset of  4.0 arousal points: power 0.35
+    sustained offset of  5.0 arousal points: power 0.44
+    sustained offset of  7.5 arousal points: power 0.80
+
+  -> detectable at 80% power: sustained offsets of about 7.5 arousal points or more.
+     Smaller sustained differences, and any localised difference,
+     remain outside what this test can exclude.
+
+wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/cluster_permutation_clusters.csv and /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/cluster_permutation_sensitivity.csv

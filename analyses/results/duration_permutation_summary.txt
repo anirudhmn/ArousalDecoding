@@ -1,0 +1,31 @@
+==============================================================================
+Permutation p-value for the trial-level inverted-U
+==============================================================================
+
+Observed:
+   beta_quad = -2.562   p_easy = 4.69e-05   p_hard = 1.10e-03   optimum = 52.2
+
+(a) How much of trial-mean arousal is duration alone?
+   r(duration, null mean)   = +1.000   (1.0 by construction)
+   r(duration, actual mean) = +0.220
+   r(actual, null)          = +0.219   -> duration explains 4.8% of the variance in trial-mean arousal
+
+   The same model fitted to the null value (no arousal information):
+   beta_quad = -0.160   p_easy = 2.56e-01   p_hard = 1.02e-13   optimum = 1847.2
+   -> note the optimum falls far outside 0-100, so pure arithmetic
+      produces monotone curvature, not an interior peak.
+
+(b) Permutation: shuffle arousal within 6 duration strata,
+    preserving the length coupling and destroying the arousal signal.
+
+   null over 400 shuffles:
+     beta_quad mean -1.286, sd 0.568
+     95% range [-2.368, -0.149]
+     shuffles giving an optimum inside 0-100: 95.5%
+
+   p(null <= observed) = 0.0125
+   duration structure alone accounts for 50% of the observed curvature
+
+Conclusion: the effect is real. It significantly exceeds what the
+length coupling produces on its own. The mixed-model p-value is
+roughly 267x too small; report p = 0.0125 instead of 4.7e-05.

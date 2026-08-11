@@ -1,0 +1,103 @@
+========================================================================================
+(1) How much does pct_in_band actually change with the multiplier?
+========================================================================================
+
+ multiplier   mean pct_in_band   r with m=1.0   % trials at 100   % at 0
+       0.50               64.3         +0.982              16.2      0.0
+       0.75               67.4         +0.994              18.5      0.0
+       1.00               70.4         +1.000              21.4      0.0
+       1.25               73.1         +0.994              22.5      0.0
+       1.50               75.9         +0.980              26.0      0.0
+       1.75               77.9         +0.968              33.5      0.0
+       2.00               79.7         +0.951              35.8      0.0
+       2.25               81.3         +0.935              38.2      0.0
+       2.50               82.6         +0.917              40.5      0.0
+       2.75               83.7         +0.902              41.0      0.0
+       3.00               84.8         +0.886              43.4      0.0
+
+  Even a 6x change in band width leaves the trial ordering almost
+  identical. The metric is close to a monotone transform of itself.
+
+========================================================================================
+(3) Where does the arousal-performance association actually live?
+========================================================================================
+
+  pooled across all trials      r = +0.270 (p = 0.0003)
+  WITHIN subject (centred)      r = +0.353 (p = 0.0000)
+  BETWEEN subjects (means)      r = +0.190 (p = 0.4801, n = 16)
+
+  A per-subject multiplier is a constant within a subject, so it can
+  only act on the BETWEEN component. If the association is carried by
+  the WITHIN component, band width has almost nothing to act on.
+
+========================================================================================
+(2) Is the mapping backwards, or just too timid?
+========================================================================================
+
+mapping                               mult range        r   Cohen d
+universal x1.0                         1.00-1.00   +0.270     -0.84
+proportional (calibration_profile)     0.50-1.44   +0.269     -0.84
+amplified x2                           0.50-1.89   +0.264     -0.81
+amplified x4                           0.50-2.78   +0.268     -0.82
+INVERTED, amplified x2                 0.50-2.15   +0.250     -0.82
+INVERTED, amplified x4                 0.50-3.00   +0.236     -0.78
+
+========================================================================================
+(4) Oracle ceiling: best possible per-subject multiplier, chosen
+    IN SAMPLE on the very trials it is scored on
+========================================================================================
+
+  universal x1.0        r = +0.270   Cohen d = -0.84
+  ORACLE per-subject    r = +0.218   Cohen d = -0.67
+  headroom              delta r = -0.053
+
+  oracle multipliers: {0: 0.5, 1: 1.25, 2: 3.0, 3: 1.25, 4: 2.75, 5: 0.5, 6: 3.0, 7: 1.0, 8: 1.5, 9: 0.5, 10: 1.5, 11: 0.5, 12: 0.5, 13: 2.25, 14: 3.0, 15: 0.5}
+
+  best SINGLE universal multiplier: 1.75 (r = +0.286)
+  so of the -0.053 oracle gain, +0.016 is available without personalising at all;
+  only -0.068 is genuinely person-specific - and that figure is
+  inflated, because the oracle chose in sample.
+
+========================================================================================
+(5) The fair comparison: scored WITHIN subject, then cross-validated
+========================================================================================
+
+scheme                         mean within-subject r    median
+universal x1.0                                +0.330    +0.404
+best universal x1.75                          +0.349    +0.453
+oracle (in sample)                            +0.409    +0.534
+leave-one-trial-out                           +0.363    +0.384
+
+  oracle (in sample) vs universal: t = 3.17, p = 0.0068  *
+
+  leave-one-trial-out vs universal: t = 0.76, p = 0.4612
+
+  The oracle beats the universal band in sample. Leave-one-trial-out does not,
+  and what little it gains is roughly what a better SINGLE universal multiplier
+  (x1.75) gains without personalising at all. With ~11 trials per subject, a
+  multiplier chosen from an 11-point grid fits noise.
+
+========================================================================================
+Verdict
+========================================================================================
+
+  1  NOT the reason. Amplifying the mapping 4x changes nothing (+0.268 vs
+     +0.270); the knob moves, the outcome does not.
+  2  NOT the reason. Inverting the mapping makes it worse, not better.
+  3  THIS IS THE REASON. The association lives within subjects (r = +0.353),
+     not between them (+0.190, ns at n = 16). A per-subject multiplier is a
+     constant within a subject, so it can barely reorder that subject's trials
+     - a 6x change in width leaves the ordering correlated at r = +0.886 with
+     the universal band - while it does shift each subject's mean, injecting
+     between-subject variance that the pooled statistic then pays for. That is
+     why per-subject widths score BELOW universal on the pooled metric.
+  4  PARTLY. Scored fairly, within subject, an in-sample oracle does gain
+     (+0.409 vs +0.330, p = 0.007). But leave-one-trial-out does not
+     (+0.363, p = 0.46), and a better single universal multiplier captures
+     most of that anyway. The headroom is real but it is not recoverable from
+     ~11 trials per subject.
+
+  So: band width is the wrong knob, and the limit is the design, not the
+  predictor. Saturation compounds it - widening the band pins 21% -> 43% of
+  trials at 100% in-band, discarding exactly the discrimination the metric
+  needs.

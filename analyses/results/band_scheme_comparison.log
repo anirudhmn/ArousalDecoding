@@ -1,0 +1,38 @@
+==================================================================================
+Control-band schemes, all scored on the same held-out trials
+==================================================================================
+
+113 hard-course control trials from 16 subjects.
+
+scheme                                    n        r         p   Cohen d
+universal x1.0                          113   +0.298    0.0013      0.85
+universal x1.75 (retuned)               113   +0.328    0.0004      0.91
+group widths (composite score)          113   +0.332    0.0003      0.95
+group widths (calibration marker)       113   +0.320    0.0006      0.83
+centre from fitted curve                113   +0.328    0.0004      0.95
+width from fitted curve                 113   +0.307    0.0009      0.83
+
+Multipliers selected per fold:
+  composite score      sensitive [0.5, 0.75, 1.0, 1.75, 2.0, 2.25]
+                       tolerant  [1.75, 2.0, 2.25, 2.5, 2.75, 3.0]
+  calibration marker   sensitive [1.75, 2.0, 2.25]
+                       tolerant  [1.5, 1.75, 2.0, 2.25, 3.0]
+
+contrast                                              delta r               95% CI       p
+universal x1.75 (retuned) vs default                   +0.031   [-0.002, +0.062]   0.064
+group widths (composite score) vs default              +0.033   [-0.018, +0.083]   0.194
+group widths (calibration marker) vs default           +0.023   [-0.028, +0.073]   0.354
+centre from fitted curve vs default                    +0.031   [-0.021, +0.111]   0.407
+width from fitted curve vs default                     +0.010   [-0.009, +0.029]   0.292
+group widths (composite score) vs retuned              +0.003   [-0.036, +0.033]   0.806
+group widths (calibration marker) vs retuned           -0.007   [-0.050, +0.027]   0.752
+centre from fitted curve vs retuned                    -0.000   [-0.049, +0.069]   0.907
+width from fitted curve vs retuned                     -0.020   [-0.062, +0.024]   0.344
+
+Reading. Compare the two blocks. Schemes that beat the default
+band do not separate from a universal band retuned to a single
+multiplier, which uses no per-subject information. The two group
+rows also show whether the result depends on the withdrawn
+composite score.
+
+wrote three CSVs to /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results

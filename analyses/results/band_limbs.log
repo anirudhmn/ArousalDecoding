@@ -1,0 +1,46 @@
+==============================================================================
+Both limbs of the inverted-U, measured separately
+==============================================================================
+
+113 hard-course control trials
+   mean time above band      31.7%
+   mean time strictly within  65.4%
+   mean time below band       2.9%
+   trials with ANY time below band: 32 of 113 (28%)
+
+------------------------------------------------------------------------------
+Does time on each side predict worse performance?
+(both negative and significant = a genuine inverted-U)
+------------------------------------------------------------------------------
+
+  performance ~ pct_above
+      pct_above   b = -0.180 [-0.271, -0.088]  p = 0.0001
+
+  performance ~ pct_below
+      pct_below   b = +0.038 [-0.298, +0.374]  p = 0.8250
+
+  performance ~ pct_above + pct_below
+      pct_above   b = -0.191 [-0.286, -0.097]  p = 0.0001
+      pct_below   b = -0.156 [-0.482, +0.170]  p = 0.3487
+
+------------------------------------------------------------------------------
+Binned means
+------------------------------------------------------------------------------
+
+  pct_above:
+    (-0.1, 0.0]   n= 21   43.3s  ###########################################
+    (0.0, 10.0]   n= 12   46.8s  ##############################################
+    (10.0, 25.0]  n= 25   45.2s  #############################################
+    (25.0, 50.0]  n= 23   42.4s  ##########################################
+    (50.0, 101.0] n= 32   36.8s  ####################################
+
+  pct_below:
+    (-0.1, 0.0]   n= 81   41.7s  #########################################
+    (0.0, 10.0]   n= 20   42.1s  ##########################################
+    (10.0, 25.0]  n=  8   44.5s  ############################################
+
+-> the falling limb is robust; the rising limb has almost no data
+   behind it, because arousal ramps upward from zero and the task
+   never produces under-arousal during demanding phases.
+
+wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/band_limbs.csv

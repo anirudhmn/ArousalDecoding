@@ -1,0 +1,66 @@
+====================================================================================
+(a) does every trial end high, as a clock would require?
+====================================================================================
+
+352 trials. Arousal in the final 3 s before the trial ends.
+
+  all trials  (n = 352)
+    mean 58.2, median 63.9, SD 34.9, range 0.0-100.0
+    ending below  25:  26.7% of trials
+    ending below  50:  40.6% of trials
+    ending below  75:  57.7% of trials
+    correlation with trial duration: r = +0.290 (p = 3.05e-08)
+
+  hard course  (n = 173)
+    mean 51.8, median 56.7, SD 34.6, range 0.0-99.9
+    ending below  25:  32.4% of trials
+    ending below  50:  48.6% of trials
+    ending below  75:  65.3% of trials
+    correlation with trial duration: r = +0.225 (p = 0.00289)
+
+  A clock predicts every trial ends near the top of its ramp and that
+  final value rises steeply with duration. Compare the spread and the
+  duration correlation above against that prediction.
+
+  Final arousal by duration quartile (hard course):
+    Q1 short  n= 44  duration  29.9s  final arousal  47.7 +/- 34.0   below 50: 52.3%
+    Q2        n= 43  duration  36.9s  final arousal  39.5 +/- 32.9   below 50: 65.1%
+    Q3        n= 43  duration  46.6s  final arousal  53.6 +/- 36.0   below 50: 48.8%
+    Q4 long   n= 43  duration  62.8s  final arousal  66.6 +/- 30.9   below 50: 27.9%
+
+====================================================================================
+(b) does the motor index track autonomic physiology?
+====================================================================================
+
+Within-trial correlation with each raw signal, averaged over trials.
+The peripheral column repeats that validation on the same trials.
+
+signal           peripheral     motor     motor p
+HR                   +0.449    +0.324    1.26e-61
+HRV-pNN35            -0.210    -0.157    1.05e-15
+EDA-phasic           +0.302    +0.263    7.52e-44
+EDA-tonic            +0.214    +0.092    4.99e-04
+Pupil                +0.174    +0.161    6.43e-28
+
+  Mean |r| across the five signals: peripheral 0.270, motor 0.199
+  Ratio: the peripheral index tracks autonomic physiology 1.4x more strongly.
+
+  Trial-mean correlation between the two indices: r = -0.007 (p = 0.893), rho = -0.005 (p = 0.929), n = 351
+
+====================================================================================
+Reading
+====================================================================================
+
+  (a) decides whether the decoded index is a clock. A clock requires every
+  trial to end near the top of its own ramp. The endpoint distribution above
+  shows how many trials instead crash at low arousal, which elapsed time alone
+  cannot produce.
+
+  (b) decides how the motor index should be described. If it does not track
+  autonomic physiology, it is a decoder of task difficulty that is not an
+  arousal signal, and recovery of the inverted-U cannot be treated as
+  diagnostic of arousal. If it does track autonomic physiology, then it is an
+  arousal-correlated behavioural signal, and recovering the inverted-U is what
+  a noisy arousal proxy is expected to do rather than a counterexample. The
+  ratio and the trial-level correlation printed above are what separate those
+  two readings.

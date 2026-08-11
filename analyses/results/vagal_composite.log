@@ -1,0 +1,48 @@
+==============================================================================
+Candidate sensitivity scores
+==============================================================================
+
+Are the two vagal markers independent across subjects?
+   hrv   vs resp  rho = -0.065  p = 0.812
+   hrv   vs hr    rho = -0.344  p = 0.192
+   resp  vs hr    rho = -0.303  p = 0.254
+   -> HRV and respiration are uncorrelated, so the composite
+      combines independent parasympathetic markers.
+
+------------------------------------------------------------------------------
+Curve-shape moderation
+------------------------------------------------------------------------------
+marker                            beta                95% CI         p
+HRV                             +1.102   [ +0.194,  +2.009]    0.0174
+respiration                     +2.272   [ +0.817,  +3.727]    0.0022
+vagal composite                 -1.975   [ -3.301,  -0.650]    0.0035
+gamma (real power)              +0.712   [ -0.220,  +1.643]    0.1341
+
+------------------------------------------------------------------------------
+Grouping, coupling and selected band width
+------------------------------------------------------------------------------
+
+  original (-HRV + gamma_signed)
+     8 sensitive / 8 tolerant subjects
+     r: sensitive +0.392 (p=0.003)   tolerant +0.262 (p=0.045)
+     interaction p = 0.435   LRT chi2(2) = 0.78, p = 0.676
+     best band: sensitive x1.75 (d=1.33)   tolerant x2.5 (d=1.10)
+
+  HRV only
+     8 sensitive / 8 tolerant subjects
+     r: sensitive +0.393 (p=0.004)   tolerant +0.238 (p=0.065)
+     interaction p = 0.314   LRT chi2(2) = 1.00, p = 0.605
+     best band: sensitive x1.75 (d=1.39)   tolerant x2.5 (d=0.90)
+
+  vagal composite (HRV + RESP)
+     7 sensitive / 9 tolerant subjects
+     r: sensitive +0.414 (p=0.003)   tolerant +0.229 (p=0.071)
+     interaction p = 0.162   LRT chi2(2) = 1.92, p = 0.383
+     best band: sensitive x1.75 (d=1.30)   tolerant x2.75 (d=1.01)
+
+  -> band widths are stable across all three scores; the
+     band-width result does not hinge on the grouping choice.
+  -> none of the three yields a significant group x coupling
+     interaction; report the continuous moderation instead.
+
+wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/vagal_composite_scores.csv

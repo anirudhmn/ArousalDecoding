@@ -1,0 +1,15 @@
+==========================================================================
+Held-out validation on condition 3 (full BCI)
+==========================================================================
+fitting trials  (cond 1+2, hard): 113
+held-out trials (cond 3,   hard): 60
+sensitive subjects: 8   tolerant: 8
+
+--------------------------------------------------------------------------
+Deviation -> performance on the held-out condition-3 trials
+--------------------------------------------------------------------------
+  universal (x1.0)             n= 60  d= 0.47 (p=0.222)  r=+0.169 (p=0.1975)
+  personalised (x1.5/x2.5)     n= 60  d= 0.60 (p=0.127)  r=+0.187 (p=0.1515)
+
+for reference, on the fitting trials (in-sample):
+  universal (x1.0)             n=113  d= 0.85          r=+0.308

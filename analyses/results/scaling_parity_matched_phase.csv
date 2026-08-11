@@ -1,0 +1,19 @@
+index,column,model,beta,p,n
+peripheral (per-subject),new_arousal,"all crossings, + time",6.4098454249167665,1.0694283555033227e-32,9041
+peripheral (per-subject),new_arousal,"all crossings, + time + t^2",6.707202470059967,1.586425569532754e-35,9041
+peripheral (per-subject),new_arousal,"large rings only, + time",6.58013901201211,1.397791119144003e-31,4853
+"peripheral, per-trial minmax",periph_trial,"all crossings, + time",9.419673745891096,9.966212215367145e-58,9041
+"peripheral, per-trial minmax",periph_trial,"all crossings, + time + t^2",9.644535755486203,4.064657727376695e-60,9041
+"peripheral, per-trial minmax",periph_trial,"large rings only, + time",9.75770961393913,5.972141727730747e-50,4853
+EEG (per-trial),old_arousal,"all crossings, + time",4.767345392213867,1.6609552897215052e-16,9041
+EEG (per-trial),old_arousal,"all crossings, + time + t^2",4.55075052377231,4.255242987652983e-15,9041
+EEG (per-trial),old_arousal,"large rings only, + time",2.297130920980438,0.0013742566473164985,4853
+"EEG, per-trial minmax (rebuilt)",eeg_trial,"all crossings, + time",4.76734538312417,1.660957402947497e-16,9041
+"EEG, per-trial minmax (rebuilt)",eeg_trial,"all crossings, + time + t^2",4.550750508396526,4.25524828469151e-15,9041
+"EEG, per-trial minmax (rebuilt)",eeg_trial,"large rings only, + time",2.2971308891362163,0.0013742571321409996,4853
+"EEG, per-subject percentile",eeg_subj_cl,"all crossings, + time",1.564085188836707,0.006122057209757801,9041
+"EEG, per-subject percentile",eeg_subj_cl,"all crossings, + time + t^2",1.5158902272992203,0.00813080157472566,9041
+"EEG, per-subject percentile",eeg_subj_cl,"large rings only, + time",-0.7297288289863374,0.28278392767169547,4853
+"EEG, per-subject + IIR + warm-up",eeg_subj_full,"all crossings, + time",1.3112244407967013,0.018599949044216725,9041
+"EEG, per-subject + IIR + warm-up",eeg_subj_full,"all crossings, + time + t^2",1.1949698704156837,0.03258360775372345,9041
+"EEG, per-subject + IIR + warm-up",eeg_subj_full,"large rings only, + time",-0.830352397584927,0.2104523313409784,4853

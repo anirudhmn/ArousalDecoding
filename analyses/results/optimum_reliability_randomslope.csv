@@ -1,0 +1,6 @@
+model,llf,aic,converged,p,p_boundary
+random intercept only,-3342.2453314664917,6704.4906629329835,True,,
++ random slope on arousal,-3338.984853980627,6701.969707961254,True,,
++ random slope on arousal and arousal^2,-3368.574235354403,6767.148470708806,False,,
+LRT random intercept only -> + random slope on arousal,6.520954971729225,,,0.03837007247557538,0.024515573354969615
+LRT + random slope on arousal -> + random slope on arousal and arousal^2,-59.178762747551445,,,1.0,1.0

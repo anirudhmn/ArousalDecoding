@@ -1,0 +1,82 @@
+7573 one-second bins, 16 subjects
+
+==============================================================================
+(A) is reactivity to excess arousal subject-specific?
+==============================================================================
+  excess_fixed      random slope LRT chi2(2) =  43.27, p = 4.02e-10
+  excess_adaptive   random slope LRT chi2(2) =  78.18, p = 1.06e-17
+
+  per-subject slope on excess_adaptive, fitted independently:
+    n = 16  mean -0.0228  SD 0.1017  range -0.4038 to +0.0133
+  Subjects differ, so a per-subject quantity is at least well defined.
+
+==============================================================================
+(B) does a calibration measure predict reactivity?
+==============================================================================
+
+signal           marker             beta                  95% CI         p
+excess_fixed     cal_sd         -0.00068   [-0.00114, -0.00021]    0.0041
+excess_fixed     resp           -0.00105   [-0.00161, -0.00049]    0.0003
+excess_fixed     hrv            -0.00045   [-0.00089, -0.00001]    0.0429
+excess_adaptive  cal_sd         -0.00039   [-0.00091, +0.00012]    0.1359
+excess_adaptive  resp           -0.00116   [-0.00175, -0.00057]    0.0001
+excess_adaptive  hrv            -0.00014   [-0.00064, +0.00037]    0.5967
+
+  A negative coefficient means a higher marker weakens the link
+  between excess arousal and imminent failure, which is the same
+  direction as the curve-shape moderation at trial level.
+
+  per-subject slope against each marker (n = 16 subjects, one point each):
+    cal_sd       r = -0.203 (p = 0.452)   rho = -0.265 (p = 0.322)
+    resp         r = -0.087 (p = 0.750)   rho = -0.097 (p = 0.721)
+    hrv          r = -0.078 (p = 0.773)   rho = +0.132 (p = 0.625)
+  These are null. The mixed model uses every bin and models the
+  clustering; the 16-point correlation discards that and is
+  dominated by one extreme subject. Report both.
+
+==============================================================================
+(C) a control band derived from the held-out subject's fitted curve
+==============================================================================
+
+113 hard-course control trials, 16 subjects, marker = cal_sd
+
+Per-fold band parameters, all derived on training subjects only:
+ subject  marker_z  curvature  multiplier  optimum_subject  optimum_group  centre_shift
+       0     0.950     -1.268       1.538           39.098         36.556         2.542
+       1    -0.007     -2.743       1.066           34.558         34.650        -0.092
+       2     1.019     -1.257       1.591           26.448         34.616        -8.168
+       3     1.777     -1.346       1.354           18.859         39.984       -20.000
+       4    -2.291     -9.105       0.623           30.669         31.898        -1.228
+       5    -0.693     -3.600       0.861           36.214         35.879         0.335
+       6     0.840     -1.477       1.427           37.430         36.758         0.672
+       7    -0.388     -3.376       0.911           35.096         34.968         0.128
+       8     0.606     -2.004       1.256           34.716         35.872        -1.157
+       9    -0.458     -3.580       0.898           35.291         35.200         0.091
+      10    -0.239     -3.441       0.945           35.413         35.398         0.015
+      11     0.697     -2.042       1.252           36.707         36.455         0.252
+      12    -0.584     -4.051       0.860           32.639         32.821        -0.182
+      13    -0.327     -3.052       0.941           38.463         37.779         0.685
+      14     0.368     -1.653       1.149           41.332         42.815        -1.484
+      15    -1.270     -3.625       0.816           42.025         39.520         2.505
+
+  width multiplier 0.62 to 1.59 (median 1.01); centre shift -20.0 to +2.5
+
+Held-out trials pooled across folds:
+band                                      n        r         p   Cohen d
+universal x1.0                          113   +0.298    0.0013      0.85
+universal x1.75 (no personalisation)    113   +0.328    0.0004      0.91
+width from curvature                    113   +0.307    0.0009      0.83
+centre from fitted optimum              113   +0.328    0.0004      0.95
+centre + width                          113   +0.317    0.0006      0.88
+
+comparison                                      delta r               95% CI       p
+centre vs universal x1.0                         +0.031   [-0.021, +0.109]   0.408
+width vs universal x1.0                          +0.010   [-0.009, +0.029]   0.284
+retuned x1.75 vs universal x1.0                  +0.031   [-0.001, +0.062]   0.056
+centre vs retuned x1.75                          -0.000   [-0.049, +0.069]   0.914
+
+  Reading. Width from curvature does nothing, which is the same
+  conclusion band_width_limits.py reaches for an arbitrary mapping,
+  now under one derived from the fitted curve. Moving the band
+  centre is the only scheme that improves both metrics, but its
+  interval spans zero and it does not beat a retuned universal band.

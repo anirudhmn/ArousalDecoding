@@ -1,0 +1,32 @@
+==========================================================================
+Leave-one-subject-out validation of personalised control bands
+==========================================================================
+
+Per-fold multipliers selected on training subjects:
+ subject  n_trials     group  m_applied  m_sens_train  m_tol_train  d_sens_train  d_tol_train
+       0         6 sensitive       1.75          1.75         2.50          1.14         1.13
+       1         6 sensitive       0.75          0.75         2.25          1.22         1.14
+       2         8  tolerant       2.25          2.25         2.25          1.21         1.21
+       3         5  tolerant       2.50          0.50         2.50          1.23         1.13
+       4        10 sensitive       1.75          1.75         2.50          1.36         1.11
+       5         7  tolerant       2.75          0.50         2.75          1.25         1.16
+       6         8  tolerant       2.00          2.00         2.00          1.13         0.91
+       7         8 sensitive       1.00          1.00         2.50          1.50         1.11
+       8         5 sensitive       0.50          0.50         2.75          1.16         1.11
+       9         6 sensitive       1.75          1.75         2.75          1.53         1.11
+      10         7  tolerant       1.75          1.75         1.75          1.20         1.45
+      11         7  tolerant       2.50          1.75         2.50          1.22         1.45
+      12         6 sensitive       2.00          2.00         2.75          1.21         1.12
+      13         7 sensitive       1.75          1.75         2.75          1.35         1.12
+      14         9  tolerant       2.75          2.25         2.75          1.27         1.37
+      15         8  tolerant       3.00          2.25         3.00          1.26         1.04
+
+multiplier stability  sensitive: [0.5, 0.75, 1.0, 1.75, 2.0, 2.25]
+                      tolerant : [1.75, 2.0, 2.25, 2.5, 2.75, 3.0]
+
+--------------------------------------------------------------------------
+Held-out results (all folds pooled)
+--------------------------------------------------------------------------
+  universal (x1.0)       n=113  Cohen's d= 0.85 (p=0.002)  r=+0.298 (p=0.0013)
+  personalised (LOSO)    n=113  Cohen's d= 0.95 (p=0.001)  r=+0.332 (p=0.0003)
+  in-sample (pooled)     n=113                       r=+0.359

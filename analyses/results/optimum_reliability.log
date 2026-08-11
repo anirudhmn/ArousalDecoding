@@ -1,0 +1,106 @@
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/base/model.py:607: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn("Maximum Likelihood optimization failed to "
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2200: ConvergenceWarning: Retrying MixedLM optimization with lbfgs
+  warnings.warn(
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/base/model.py:607: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn("Maximum Likelihood optimization failed to "
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2200: ConvergenceWarning: Retrying MixedLM optimization with cg
+  warnings.warn(
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/base/model.py:607: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn("Maximum Likelihood optimization failed to "
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2206: ConvergenceWarning: MixedLM optimization failed, trying a different optimizer may help.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2218: ConvergenceWarning: Gradient optimization failed, |grad| = 68.337201
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2261: ConvergenceWarning: The Hessian matrix at the estimated parameter values is not positive definite.
+  warnings.warn(msg, ConvergenceWarning)
+========================================================================================
+(A) is the per-subject optimum reliable at all?
+========================================================================================
+
+Split each subject's trials into random halves, estimate the optimum
+independently in each, correlate across subjects. 200 random splits.
+
+estimator                         subjects   split-half r           95% range  full-length
+quadratic vertex [all trials]           16         +0.033      [-0.59, +0.78]       +0.064
+quadratic vertex [hard course]           0           +nan        [+nan, +nan]         +nan
+top-quartile arousal [all trials]        16         +0.703      [+0.52, +0.86]       +0.826
+top-quartile arousal [hard course]        16         +0.714      [+0.54, +0.83]       +0.833
+performance-weighted arousal [all trials]        16         +0.888      [+0.79, +0.95]       +0.941
+performance-weighted arousal [hard course]        16         +0.794      [+0.66, +0.90]       +0.885
+
+A reliability near zero means the per-subject optimum is mostly noise,
+and no baseline measure could predict it however well chosen.
+
+----------------------------------------------------------------------------------------
+Is that reliability anything more than the subject's overall level?
+----------------------------------------------------------------------------------------
+
+  correlation with that subject's mean arousal, across subjects:
+     quadratic vertex                 r = -0.668  (p = 0.025)
+     top-quartile arousal             r = +0.939  (p = 7e-08)
+     performance-weighted arousal     r = +0.987  (p = 1.4e-12)
+
+  split-half reliability of subject MEAN arousal, which uses no
+  performance information at all: r = +0.917 (full-length +0.957)
+
+  reliability of each optimum after subtracting that subject's mean:
+     quadratic vertex                 r = +0.226  95% [-0.41, +0.91]
+     top-quartile arousal             r = +0.017  95% [-0.37, +0.45]
+     performance-weighted arousal     r = +0.141  95% [-0.21, +0.48]
+
+  If the residualised reliability includes zero, the stable individual
+  difference is arousal LEVEL, not an individual optimum - and the
+  per-subject rescaling in the decoder already normalises level.
+
+========================================================================================
+(B) does a random slope on arousal improve the model?
+========================================================================================
+  random intercept only                      logL   -3342.25   AIC    6704.5   converged
+  + random slope on arousal                  logL   -3338.98   AIC    6702.0   converged
+  + random slope on arousal and arousal^2    logL   -3368.57   AIC    6767.1   DID NOT CONVERGE
+
+  LRT random intercept only -> + random slope on arousal:
+     chi2(2) = 6.52, p = 0.0384 (boundary-corrected p = 0.0245)
+
+  LRT + random slope on arousal -> + random slope on arousal and arousal^2:
+     chi2(3) = -59.18, p = 1.0000 (boundary-corrected p = 1.0000)
+
+========================================================================================
+(C) is a subject's own best band width reliable?
+========================================================================================
+
+  15 subjects with >= 8 hard-course trials
+ subject  n_trials  half1  half2
+       0        12   0.50   2.25
+       1         8   0.75   1.00
+       2        13   3.00   3.00
+       3        10   0.50   1.25
+       4        12   2.75   1.50
+       5        10   1.00   0.50
+       6        11   0.75   1.75
+       7        10   3.00   1.00
+       8        11   2.25   0.50
+       9         8   0.50   1.75
+      10        12   1.50   0.75
+      12         8   0.50   1.00
+      13        12   1.00   2.25
+      14        12   3.00   2.75
+      15        12   1.00   0.50
+
+  half-to-half agreement: Spearman rho = +0.056 (p = 0.843), Pearson r = +0.269 (p = 0.333)
+  identical choice in 7% of subjects; mean |difference| = 0.92
+  (the grid spans 0.5 to 3.0 in steps of 0.25)
+
+========================================================================================
+(D) own optimum vs group optimum on held-out full-BCI trials
+========================================================================================
+
+  group optimum 30.8; 60 held-out full-BCI trials from 16 subjects
+    deviation from OWN optimum         beta =  -0.024, p = 1.000   (raw r = +0.053)
+    deviation from GROUP optimum       beta =  -4.719, p = 0.911   (raw r = -0.078)
+
+  If personalisation works, deviation from the subject's OWN optimum
+  should predict performance better than deviation from the group's.
+
+wrote four CSVs to /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results

@@ -1,0 +1,7 @@
+index,model,beta,p,n
+peripheral,"all crossings, + time",6.4098454249167665,1.0694283555033227e-32,9041
+peripheral,"all crossings, + time + time^2",6.707202470059967,1.586425569532754e-35,9041
+peripheral,"large rings only, + time",6.58013901201211,1.397791119144003e-31,4853
+motor,"all crossings, + time",1.1533875001640645,0.03721785605206774,9011
+motor,"all crossings, + time + time^2",0.5887995546796939,0.28579825083649957,9011
+motor,"large rings only, + time",1.843416010960988,0.005721249462483492,4839

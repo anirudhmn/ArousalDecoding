@@ -1,0 +1,29 @@
+==================================================================================
+Landmark analysis (arousal at time L -> remaining flight time)
+==================================================================================
+
+ landmark  n alive   beta_lin     p_lin  beta_quad    p_quad     dAIC   vertex
+       10      351     +0.004     0.969    -0.0008     0.607     +1.7      2.7
+       15      350     -0.089     0.411    +0.0010     0.526     +1.6     47.0
+       20      346     +0.017     0.877    -0.0003     0.818     +1.9     25.3
+       25      343     -0.014     0.886    -0.0007     0.594     +1.7    -10.9
+       30      338     +0.100     0.243    -0.0021     0.033     -2.5     23.4 *
+       35      301     -0.058     0.510    -0.0001     0.891     +2.0   -216.2
+
+best landmark = 30 s   (* marks a significant negative quadratic,
+ i.e. an inverted-U in remaining flight time)
+
+binned view at L = 30 s:
+   arousal (0, 15]      n=178   28.4 +/-  1.2 s  ##################################
+   arousal (15, 30]     n= 43   27.5 +/-  2.5 s  #################################
+   arousal (30, 45]     n= 38   22.0 +/-  2.7 s  ##########################
+   arousal (45, 60]     n= 28   24.3 +/-  3.4 s  #############################
+   arousal (60, 100]    n= 50   20.2 +/-  2.1 s  ########################
+
+full model at L = 30 s:
+   arousal            beta= +0.0998  95% CI [-0.0678, +0.2674]  p=0.2434
+   I(arousal ** 2)    beta= -0.0021  95% CI [-0.0041, -0.0002]  p=0.0328
+   optimum arousal = 23.4
+
+specificity check - motor index at the same landmark:
+   beta_quad=+0.0005  p=0.623  dAIC=+1.8  vertex=102.8

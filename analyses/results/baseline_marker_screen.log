@@ -1,0 +1,43 @@
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/base/model.py:607: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn("Maximum Likelihood optimization failed to "
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2200: ConvergenceWarning: Retrying MixedLM optimization with lbfgs
+  warnings.warn(
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/base/model.py:607: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn("Maximum Likelihood optimization failed to "
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2200: ConvergenceWarning: Retrying MixedLM optimization with cg
+  warnings.warn(
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/base/model.py:607: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  warnings.warn("Maximum Likelihood optimization failed to "
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2206: ConvergenceWarning: MixedLM optimization failed, trying a different optimizer may help.
+  warnings.warn(msg, ConvergenceWarning)
+/opt/anaconda3/lib/python3.12/site-packages/statsmodels/regression/mixed_linear_model.py:2218: ConvergenceWarning: Gradient optimization failed, |grad| = 5.226795
+  warnings.warn(msg, ConvergenceWarning)
+======================================================================================
+Screening baseline measures as arousal-sensitivity markers
+======================================================================================
+
+feature           (a) curve shape      (b) coupling      (c) band width
+                   beta         p      beta       p         rho       p
+hrv              +1.102    0.0174   -0.0526   0.255      +1.000     nan
+hr               -0.761    0.3361   -0.0034   0.959      +1.000     nan
+resp             +2.272    0.0022   -0.0222   0.749      -1.000     nan
+eda_p            -0.098    0.8840   -0.0314   0.429      +1.000     nan
+eda_t            +0.205    0.7586   +0.0277   0.479      -1.000     nan
+pup              +0.163    0.8356   +0.1089   0.080      -1.000     nan
+theta            +0.541    0.7223   +0.0352   0.397      +1.000     nan
+alpha            +1.279    0.3577   +0.0342   0.417      +1.000     nan
+beta             +1.083    0.0456   +0.0148   0.738      +1.000     nan
+gamma            +0.712    0.1341   +0.0203   0.677      +1.000     nan
+theta_beta       -2.581    0.0280   +0.0433   0.305      -1.000     nan
+alpha_theta      +0.545    0.3895   -0.0843   0.046      -1.000     nan
+hrv_sd           -1.430    0.0485   -0.0190   0.718      +1.000     nan
+hr_sd            +0.441    0.6644   -0.0555   0.345      +1.000     nan
+pup_sd           -0.486    0.5412   -0.0933   0.174      -1.000     nan
+
+Holm-corrected across the 15 features:
+   (a) curve shape    survivors: ['resp']   (best: resp at p_adj=0.033)
+   (b) coupling       survivors: none   (best: alpha_theta at p_adj=0.684)
+   (c) band width     survivors: ['hrv', 'hr', 'resp', 'eda_p', 'eda_t', 'pup', 'theta', 'alpha', 'beta', 'gamma', 'theta_beta', 'alpha_theta', 'hrv_sd', 'hr_sd', 'pup_sd']   (best: hrv at p_adj=0.000)
+
+per-subject best multiplier: {4: 2.0, 14: 1.0}
+   spread: 1.0 to 2.0, median 1.5

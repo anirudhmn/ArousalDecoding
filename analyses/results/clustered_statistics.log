@@ -1,0 +1,41 @@
+==============================================================================
+Statistics with subject clustering respected
+==============================================================================
+
+Table 1 refitted as mixed models (random intercept per subject)
+metric                   Pearson r  Spearman  beta [95% CI]               p (mixed)
+% time above band           -0.308    -0.248   -0.180 [-0.271,-0.088]     0.0001
+% time in band              +0.308    +0.248   +0.180 [+0.088,+0.271]     0.0001
+Mean excursion mag.         -0.254    -0.227   -0.209 [-0.367,-0.051]     0.0097
+Excursion rate/min          -0.308    -0.248   -0.299 [-0.452,-0.146]     0.0001
+
+ceiling check: 18.6% of trials sit at 100% in-band
+
+------------------------------------------------------------------------------
+Individual differences - continuous interaction as primary evidence
+------------------------------------------------------------------------------
+  arousal^2 x hrv    beta=+1.0991 SE=0.4621 95% CI [+0.1934, +2.0048] p=0.0174
+  arousal^2 x gamma  beta=-1.2067 SE=0.5760 95% CI [-2.3357, -0.0777] p=0.0362
+
+  moderation by continuous sensitivity score:
+    interaction beta = +0.0610, p = 0.0766
+    LRT vs no-interaction: chi2(2) = 3.80, p = 0.1497   (AIC 869.0 -> 869.2)
+
+------------------------------------------------------------------------------
+Personalisation gain, formally tested
+------------------------------------------------------------------------------
+  r universal    = +0.308
+  r personalised = +0.359
+  delta r        = +0.051   bootstrap 95% CI [+0.001, +0.114]   p = 0.046
+
+  band x %in-band interaction: beta = +0.0528, p = 0.2886
+
+  median-split group x %in-band:
+      beta = +0.0776, p = 0.4346
+      LRT chi2(2) = 0.78, p = 0.6763   AIC 869.0 -> 872.2
+      -> not supported once subject clustering is modelled
+
+  per-subject slopes, fitted one subject at a time:
+      sensitive n=8 mean +0.317 (SD 0.345)
+      tolerant  n=7 mean +0.258 (SD 0.319)
+      two-sample t = +0.34, p = 0.739

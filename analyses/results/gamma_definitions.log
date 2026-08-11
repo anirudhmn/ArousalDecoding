@@ -1,0 +1,42 @@
+==============================================================================
+Gamma x arousal^2 interaction under five definitions of gamma
+==============================================================================
+
+per-subject values:
+ subject  signed_mean    power  variance  envelope    welch  log_power
+       0     0.000085 0.131182  0.131182  0.411650 0.008778  -2.031169
+       1     0.000003 0.039595  0.039595  0.220072 0.001909  -3.229063
+       2     0.000021 0.128026  0.128026  0.382208 0.006196  -2.055519
+       3     0.000017 0.233702  0.233702  0.485920 0.011254  -1.453707
+       4     0.000072 0.412637  0.412637  0.670605 0.019918  -0.885188
+       5    -0.000018 0.123646  0.123646  0.209219 0.007051  -2.090331
+       6    -0.000025 0.365264  0.365264  0.616593 0.017442  -1.007134
+       7     0.000013 0.093088  0.093088  0.368134 0.004334  -2.374206
+       8    -0.000011 0.024041  0.024041  0.178018 0.001162  -3.728014
+       9     0.000021 0.193299  0.193299  0.511573 0.009194  -1.643515
+      10    -0.000001 0.230067  0.230067  0.482907 0.010985  -1.469386
+      11    -0.000022 0.059753  0.059753  0.262320 0.002865  -2.817529
+      12     0.000092 0.406571  0.406571  0.595431 0.019558  -0.899997
+      13    -0.000025 0.093767  0.093767  0.320167 0.004503  -2.366947
+      14    -0.000003 0.068362  0.068362  0.304873 0.003324  -2.682938
+      15    -0.000013 0.077534  0.077534  0.287417 0.003764  -2.557045
+
+rank correlation with the signed_mean version:
+   power        rho = +0.453
+   variance     rho = +0.453
+   envelope     rho = +0.494
+   welch        rho = +0.429
+   log_power    rho = +0.453
+
+gamma definition      beta         p   verdict      group flips
+signed_mean       -1.207    0.0362   significant            0
+power             +0.674    0.1341   not significant           4
+variance          +0.674    0.1341   not significant           4
+envelope          +0.712    0.1174   not significant           4
+welch             +0.678    0.1359   not significant           4
+log_power         +0.441    0.3375   not significant           4
+
+(the stored feature is signed_mean; 'group flips' counts subjects
+ changing sensitivity group relative to it)
+
+for contrast, arousal^2 x HRV: beta=+1.099, p=0.0174  (unaffected - HRV has one definition)

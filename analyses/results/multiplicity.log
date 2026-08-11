@@ -1,0 +1,164 @@
+================================================================================================
+Every reported p-value, its family, and Holm correction
+================================================================================================
+
+decoder comparisons  (n = 9)
+  test                                                          p       Holm        src
+    peripheral vs shuffled                               1.95e-14     0.0000   *negative_controls
+    LOSO peripheral vs chance                            3.70e-07     0.0000   *loso_decoder
+    combined vs EEG (within-subject)                     4.20e-07     0.0000   *decoding
+    LOSO EEG vs chance                                   1.10e-06     0.0000   *loso_decoder
+    peripheral vs EEG (within-subject)                   8.70e-06     0.0000   *decoding
+    within-subject vs LOSO                               1.30e-05     0.0001   *loso_decoder
+    peripheral vs motor                                  4.90e-04     0.0015   *negative_controls
+    combined vs peripheral (within-subject)              1.60e-02     0.0320   *decoding
+    LOSO peripheral vs EEG                               1.73e-01     0.1726    loso_decoder
+
+label controls  (n = 5)
+  test                                                          p       Holm        src
+    real vs reversed (79.5% changed)                     3.88e-04     0.0019   *label_controls
+    real vs phase-perm (0.8% changed)                    4.80e-02     0.1920   xlabel_controls
+    real vs block-perm (0.0% changed)                    7.80e-02     0.2340    label_controls
+    real vs cross-trial (0.9% changed)                   9.52e-02     0.2340    label_controls
+    real vs shift2 (6.7% of labels changed)              3.35e-01     0.3350    label_controls
+
+validity  (n = 3)
+  test                                                          p       Holm        src
+    matched-phase, + time^2                              1.59e-35     0.0000   *matched_phase
+  P matched-phase, all crossings + time                  1.07e-32     0.0000   *matched_phase
+    matched-phase, large rings only                      1.40e-31     0.0000   *matched_phase
+
+Yerkes-Dodson  (n = 3)
+  test                                                          p       Holm        src
+    hazard quadratic, 5 s-bin fixed effects              3.50e-10     0.0000   *hazard_model
+  P trial-mean quadratic, duration-stratified permutation   1.25e-02     0.0250   *duration_permutation
+    landmark analysis at L = 30 s                        3.28e-02     0.0328   *landmark_analysis
+
+Table 1  (n = 4)
+  test                                                          p       Holm        src
+    % time above band                                    1.00e-04     0.0004   *clustered_statistics
+    % time in band                                       1.00e-04     0.0004   *clustered_statistics
+    excursion rate                                       1.00e-04     0.0004   *clustered_statistics
+    mean excursion magnitude                             9.70e-03     0.0097   *clustered_statistics
+
+a priori (family of one)  (n = 1)
+  test                                                          p       Holm        src
+  P arousal^2 x HRV                                      1.74e-02     0.0174   *t3/vagal_composite
+
+calibration screen (17 measures)  (n = 17)
+  test                                                          p       Holm        src
+    calibration arousal SD                               1.60e-03     0.0272   *calibration_profile
+    respiration                                          2.20e-03     0.0352   *calibration_profile
+    HRV                                                  1.74e-02     0.2610   xcalibration_profile
+    theta/beta                                           2.80e-02     0.3920   xcalibration_profile
+    calibration level                                    2.93e-02     0.3920   xcalibration_profile
+    gamma (real power)                                   3.62e-02     0.4344   xcalibration_profile
+    calibration volatility                               3.81e-02     0.4344   xcalibration_profile
+    calibration IQR                                      4.20e-02     0.4344   xcalibration_profile
+    HRV SD                                               4.85e-02     0.4365   xcalibration_profile
+    alpha                                                1.04e-01     0.8344    calibration_profile
+    heart rate                                           3.36e-01     1.0000    calibration_profile
+    theta                                                3.37e-01     1.0000    calibration_profile
+    calibration frac-high                                3.61e-01     1.0000    calibration_profile
+    beta                                                 5.57e-01     1.0000    calibration_profile
+    EDA tonic                                            7.59e-01     1.0000    calibration_profile
+    pupil                                                8.36e-01     1.0000    calibration_profile
+    EDA phasic                                           8.84e-01     1.0000    calibration_profile
+
+group moderation  (n = 4)
+  test                                                          p       Holm        src
+  P continuous sensitivity x %in-band                    7.66e-02     0.3064    clustered_statistics
+    universal vs personalised band x %in-band            2.89e-01     0.8658    clustered_statistics
+    median-split group x %in-band                        4.35e-01     0.8692    clustered_statistics
+    per-subject slopes, sensitive vs tolerant            7.39e-01     0.8692    clustered_statistics
+
+held-out control bands  (n = 9)
+  test                                                          p       Holm        src
+    retuned universal vs default                         6.40e-02     0.5760    band_scheme_comparison
+    group widths (composite) vs default                  1.94e-01     1.0000    band_scheme_comparison
+    width from fitted curve vs default                   2.92e-01     1.0000    band_scheme_comparison
+    width from fitted curve vs retuned                   3.44e-01     1.0000    band_scheme_comparison
+    group widths (calibration marker) vs default         3.54e-01     1.0000    band_scheme_comparison
+    centre from fitted curve vs default                  4.07e-01     1.0000    band_scheme_comparison
+    group widths (calibration marker) vs retuned         7.52e-01     1.0000    band_scheme_comparison
+    group widths (composite) vs retuned                  8.06e-01     1.0000    band_scheme_comparison
+    centre from fitted curve vs retuned                  9.07e-01     1.0000    band_scheme_comparison
+
+individual reactivity  (n = 5)
+  test                                                          p       Holm        src
+    random slope on excess above adaptive band           1.06e-17     0.0000   *individual_reactivity
+    random slope on excess above fixed band              4.02e-10     0.0000   *individual_reactivity
+    excess x respiration                                 3.00e-04     0.0009   *individual_reactivity
+    excess x calibration arousal SD                      4.10e-03     0.0082   *individual_reactivity
+    excess x HRV                                         4.29e-02     0.0429   *individual_reactivity
+
+within-trial control  (n = 4)
+  test                                                          p       Holm        src
+  P graded excess over adaptive band                     6.56e-04     0.0026   *within_trial_control
+    rate of change of arousal                            2.61e-02     0.0783   xwithin_trial_control
+    sustained excursion (>= 3 s)                         1.28e-01     0.2560    within_trial_control
+    binary adaptive band                                 7.70e-01     0.7700    within_trial_control
+
+reliability  (n = 2)
+  test                                                          p       Holm        src
+    random slope on arousal (LRT)                        3.84e-02     0.0768   xoptimum_reliability
+    band-width split-half agreement (Spearman)           8.43e-01     0.8430    optimum_reliability
+
+feedback effects  (n = 3)
+  test                                                          p       Holm        src
+  P failure-locked rise, paired t                        1.70e-11     0.0000   *failure_locked_arousal
+    above-band x full BCI on 5 s hazard                  4.00e-02     0.0800   xhazard_model
+    failure-locked rise by condition (ANOVA)             1.55e-01     0.1550    failure_locked_arousal
+
+trajectory clusters  (n = 4)
+  test                                                          p       Holm        src
+    hard: BCI vs half-sham                               2.28e-02     0.0912   xcluster_permutation
+    hard: BCI vs half-sham (2nd cluster)                 2.21e-01     0.6627    cluster_permutation
+    hard: BCI vs silence                                 2.69e-01     0.6627    cluster_permutation
+    hard: omnibus                                        2.74e-01     0.6627    cluster_permutation
+
+external validation  (n = 5)
+  test                                                          p       Holm        src
+    HR                                                   5.34e-09     0.0000   *external_validation
+    EDA-phasic                                           2.24e-06     0.0000   *external_validation
+    HRV-pNN35                                            1.93e-04     0.0006   *external_validation
+    Pupil                                                2.88e-04     0.0006   *external_validation
+    EDA-tonic                                            9.10e-02     0.0910    external_validation
+
+  * survives correction within its family
+  x significant uncorrected, does not survive
+  P pre-specified primary test
+
+================================================================================================
+What changes once the policy is applied
+================================================================================================
+
+  78 tests in 15 families; 45 significant uncorrected, 33 after correction.
+
+  Loses significance under its family's correction:
+    - real vs phase-perm (0.8% changed) (label controls): p = 0.0480 -> 0.1920
+    - HRV (calibration screen (17 measures)): p = 0.0174 -> 0.2610
+    - theta/beta (calibration screen (17 measures)): p = 0.0280 -> 0.3920
+    - calibration level (calibration screen (17 measures)): p = 0.0293 -> 0.3920
+    - gamma (real power) (calibration screen (17 measures)): p = 0.0362 -> 0.4344
+    - calibration volatility (calibration screen (17 measures)): p = 0.0381 -> 0.4344
+    - calibration IQR (calibration screen (17 measures)): p = 0.0420 -> 0.4344
+    - HRV SD (calibration screen (17 measures)): p = 0.0485 -> 0.4365
+    - rate of change of arousal (within-trial control): p = 0.0261 -> 0.0783
+    - random slope on arousal (LRT) (reliability): p = 0.0384 -> 0.0768
+    - above-band x full BCI on 5 s hazard (feedback effects): p = 0.0400 -> 0.0800
+    - hard: BCI vs half-sham (trajectory clusters): p = 0.0228 -> 0.0912
+
+  Notes on the policy:
+   - HRV is reported as an a-priori test and is NOT corrected against
+     the 17-measure screen it was not part of. Respiration comes FROM
+     that screen and is reported with its corrected p-value. HRV also
+     appears inside the screen, where it does not survive; both are
+     shown rather than the more convenient one.
+   - Table 1's four metrics are monotone transforms of one another,
+     so correcting them as four independent tests is conservative to
+     the point of being misleading; report two.
+   - Cluster p-values already control error across time bins; the
+     correction applied here is across the eight trajectory tests.
+
+wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/multiplicity.csv

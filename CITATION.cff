@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+title: >-
+  Multimodal physiological arousal decoding in a boundary-avoidance task
+message: >-
+  If you use this software, please cite both the software and the
+  dataset it analyses.
+type: software
+authors:
+  - given-names: Anirudh
+    family-names: Natarajan
+    email: amn2225@columbia.edu
+    affiliation: Columbia University
+  - given-names: Paul
+    family-names: Sajda
+    affiliation: Columbia University
+license: MIT
+version: 1.0.0
+repository-code: INSERT REPOSITORY URL BEFORE RELEASE
+abstract: >-
+  Analysis code for a re-analysis of the Faller et al. (2019) boundary-avoidance
+  task dataset. Trains a multimodal decoder on peripheral physiological signals,
+  converts its output into a continuous arousal index, and tests that index
+  against task performance, task phase, and baseline individual differences.
+keywords:
+  - arousal
+  - brain-computer interface
+  - neurofeedback
+  - electroencephalography
+  - heart rate variability
+references:
+  - type: article
+    authors:
+      - given-names: Josef
+        family-names: Faller
+      - given-names: Jennifer
+        family-names: Cummings
+      - given-names: Sameer
+        family-names: Saproo
+      - given-names: Paul
+        family-names: Sajda
+    title: >-
+      Regulation of arousal via online neurofeedback improves human performance
+      in a demanding sensory-motor task
+    journal: Proceedings of the National Academy of Sciences
+    volume: 116
+    issue: 13
+    start: 6482
+    end: 6490
+    year: 2019
+    doi: 10.1073/pnas.1817207116
+  - type: data
+    title: >-
+      Dataset for: Regulation of arousal via online neurofeedback improves human
+      performance in a demanding sensory-motor task
+    year: 2019
+    doi: 10.21227/rn3e-bp31
