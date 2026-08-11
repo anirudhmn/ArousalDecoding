@@ -116,7 +116,7 @@ def stratified_auc(y, prob, positions, min_per_class=3):
     """AUC computed within ring-position strata, then pooled by stratum size.
 
     If the label is close to a deterministic function of ring position, most
-    strata will contain a single class and drop out - which is itself the
+    strata will contain a single class and drop out. That is itself the
     finding, so the number of usable strata is reported alongside.
     """
     num = den = 0.0
@@ -289,7 +289,7 @@ def run():
     print("-" * 86)
     print("""
   Read the 'labels changed' column first. Four of the five controls change
-  under 7% of labels, so their AUCs carry no information - they are the same
+  under 7% of labels, so their AUCs carry no information. They are the same
   defect the +2-ring shift has, and it is not fixable by choosing a
   different shift. The label is a deterministic function of ring position for
   13 of 16 subjects.

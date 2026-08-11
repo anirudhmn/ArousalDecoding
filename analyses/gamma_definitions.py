@@ -84,11 +84,11 @@ def run():
     print("\n(the stored feature is signed_mean; 'group flips' counts "
           "subjects\n changing sensitivity group relative to it)")
 
-    # HRV, for contrast - unchanged by any of this.
+    # HRV, for contrast. It is unchanged by any of this.
     m = Y.fit_interaction_model(df, "hrv")
     t = "I(arousal ** 2):hrv_z"
     print(f"\nfor contrast, arousal^2 x HRV: beta={m.params[t]:+.3f}, "
-          f"p={m.pvalues[t]:.4f}  (unaffected - HRV has one definition)")
+          f"p={m.pvalues[t]:.4f}  (unaffected, HRV has one definition)")
 
 
 if __name__ == "__main__":

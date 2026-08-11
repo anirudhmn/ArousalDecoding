@@ -32,10 +32,10 @@ def calibration_composition():
     print("=" * 78)
     print("Matched-phase course discrimination")
     print("=" * 78)
-    print("\nCalibration block (condition 0) - the decoder's training set")
+    print("\nCalibration block (condition 0), the decoder's training set")
     print(pd.crosstab(cal.trial_difficulty, cal.ring_size, margins=True).to_string())
     print(f"  trials: {cal.groupby(['subj_idx','trial_idx']).ngroups}")
-    print("\nClosed-loop block (conditions 1-3) - where it is applied")
+    print("\nClosed-loop block (conditions 1-3), where it is applied")
     print(pd.crosstab(cl.trial_difficulty, cl.ring_size, margins=True).to_string())
     print("\nRing diameters differ between courses: easy large/medium/small = "
           "108/72/36, hard = 60/30/14.4.")

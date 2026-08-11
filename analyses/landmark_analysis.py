@@ -91,7 +91,7 @@ def run():
     motor = pd.read_pickle(OUT / "motor_decoder_trial_table.pkl")
     dm = landmark_frame(motor, L)
     rm = fit(dm)
-    print(f"\nspecificity check - motor index at the same landmark:")
+    print(f"\nspecificity check, motor index at the same landmark:")
     print(f"   beta_quad={rm['b2']:+.4f}  p={rm['p2']:.3f}  dAIC={rm['daic']:+.1f}  "
           f"vertex={rm['vertex']:.1f}")
 

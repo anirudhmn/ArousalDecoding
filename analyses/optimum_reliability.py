@@ -66,7 +66,7 @@ def top_quartile_arousal(g):
 
 
 def performance_weighted(g):
-    """Performance-weighted mean arousal - a smooth version of the above."""
+    """Performance-weighted mean arousal, a smooth version of the above."""
     if len(g) < 4:
         return np.nan
     w = g["performance"] - g["performance"].min()
@@ -79,7 +79,7 @@ ESTIMATORS = {"quadratic vertex": vertex,
 
 
 # --------------------------------------------------------------------------- #
-# A - split-half reliability of the optimum
+# A. split-half reliability of the optimum
 # --------------------------------------------------------------------------- #
 
 def split_half(df, estimator, n_rep=200):
@@ -140,7 +140,7 @@ def part_a2(df):
     A subject who simply runs higher will have a higher optimum on any
     performance-weighted estimator, purely arithmetically. Unless the optimum
     is reliable AFTER removing the subject's own mean, there is no
-    person-specific optimum to personalise on - only a person-specific level,
+    person-specific optimum to personalise on, only a person-specific level,
     which the per-subject rescaling already handles.
     """
     print("\n" + "-" * 88)
@@ -176,13 +176,13 @@ def part_a2(df):
               f"95% [{r['lo']:+.2f}, {r['hi']:+.2f}]")
 
     print("\n  If the residualised reliability includes zero, the stable individual")
-    print("  difference is arousal LEVEL, not an individual optimum - and the")
+    print("  difference is arousal LEVEL, not an individual optimum, and the")
     print("  per-subject rescaling in the decoder already normalises level.")
     return pd.DataFrame(rows)
 
 
 # --------------------------------------------------------------------------- #
-# B - does the model need subject-specific curve shape?
+# B. does the model need subject-specific curve shape?
 # --------------------------------------------------------------------------- #
 
 def part_b(df):
@@ -229,7 +229,7 @@ def part_b(df):
 
 
 # --------------------------------------------------------------------------- #
-# C - is a subject's best band width reliable?
+# C. is a subject's best band width reliable?
 # --------------------------------------------------------------------------- #
 
 def best_multiplier(sub_df, traj):
@@ -280,7 +280,7 @@ def part_c(df):
 
 
 # --------------------------------------------------------------------------- #
-# D - does a subject's own optimum transfer to their BCI trials?
+# D. does a subject's own optimum transfer to their BCI trials?
 # --------------------------------------------------------------------------- #
 
 def part_d(df):

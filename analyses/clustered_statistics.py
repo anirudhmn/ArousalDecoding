@@ -75,7 +75,7 @@ def run():
 
     # ---- (b) individual differences: continuous vs median split -----------
     print("\n" + "-" * 78)
-    print("Individual differences - continuous interaction as primary evidence")
+    print("Individual differences: continuous interaction as primary evidence")
     print("-" * 78)
     for feature in ("hrv", "gamma"):
         m = Y.fit_interaction_model(df, feature)

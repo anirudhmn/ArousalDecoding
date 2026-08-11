@@ -220,7 +220,7 @@ def run():
     print("""
   The fixed band is the reference rule and the benchmark. A within-trial
   parameter earns its place only if it adds information ON TOP of the fixed
-  band in the head-to-head section - a higher AUC on its own is not enough,
+  band in the head-to-head section. A higher AUC on its own is not enough,
   since a parameter that fires more often will score higher by base rate alone.
 
   'fires' is the share of bins in which the parameter is non-zero. Compare it
@@ -230,7 +230,7 @@ def run():
 
   AUC|t is stratified by time bin; AUC raw is marginal and is reported only to
   show how misleading it is. The two differ because elapsed time drives the
-  outcome and the band signals in opposing directions late in a trial - the
+  outcome and the band signals in opposing directions late in a trial. The
   fitted trajectory rises, so nothing exceeds the band after ~45 s while the
   crash rate stays high. Marginally the effect cancels to chance. Within time
   bin, being above the band raises the 5 s crash rate by about 7 percentage

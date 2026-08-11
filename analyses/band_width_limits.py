@@ -180,7 +180,7 @@ def part_4(hc, traj):
     print(f"\n  best SINGLE universal multiplier: {best_uni} (r = {best_r:+.3f})")
     print(f"  so of the {r_o - r_u:+.3f} oracle gain, "
           f"{best_r - r_u:+.3f} is available without personalising at all;")
-    print(f"  only {r_o - best_r:+.3f} is genuinely person-specific - and that "
+    print(f"  only {r_o - best_r:+.3f} is genuinely person-specific, and that "
           f"figure is\n  inflated, because the oracle chose in sample.")
 
     return pd.DataFrame([dict(scheme="universal", multiplier=1.0, r=r_u, d=d_u),
@@ -296,7 +296,7 @@ def run():
      not between them (+0.190, ns at n = 16). A per-subject multiplier is a
      constant within a subject, so it can barely reorder that subject's trials
      - a 6x change in width leaves the ordering correlated at r = +0.886 with
-     the universal band - while it does shift each subject's mean, injecting
+     the universal band. It does shift each subject's mean, injecting
      between-subject variance that the pooled statistic then pays for. That is
      why per-subject widths score BELOW universal on the pooled metric.
   4  PARTLY. Scored fairly, within subject, an in-sample oracle does gain
@@ -306,7 +306,7 @@ def run():
      ~11 trials per subject.
 
   So: band width is the wrong knob, and the limit is the design, not the
-  predictor. Saturation compounds it - widening the band pins 21% -> 43% of
+  predictor. Saturation compounds it: widening the band pins 21% -> 43% of
   trials at 100% in-band, discarding exactly the discrimination the metric
   needs.""")
 

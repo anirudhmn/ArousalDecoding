@@ -59,7 +59,7 @@ N_BOOT = 5000
 
 
 # --------------------------------------------------------------------------- #
-# A - the calibration profile
+# A. the calibration profile
 # --------------------------------------------------------------------------- #
 
 def subject_bounds(probs):
@@ -132,7 +132,7 @@ def part_a(prof):
 
 
 # --------------------------------------------------------------------------- #
-# B - reliability within the calibration block
+# B. reliability within the calibration block
 # --------------------------------------------------------------------------- #
 
 def part_b(n_rep=200):
@@ -184,7 +184,7 @@ def part_b(n_rep=200):
 
 
 # --------------------------------------------------------------------------- #
-# C - does calibration predict closed-loop behaviour?
+# C. does calibration predict closed-loop behaviour?
 # --------------------------------------------------------------------------- #
 
 def part_c(prof, df):
@@ -215,14 +215,14 @@ def part_c(prof, df):
 
 
 # --------------------------------------------------------------------------- #
-# D - out-of-sample personalised band
+# D. out-of-sample personalised band
 # --------------------------------------------------------------------------- #
 
 def evaluate_bands(df, prof, width_source, label, loso_traj=True):
     """Per-trial in-band metrics with a subject-specific width from calibration.
 
-    The trajectory is refitted leave-one-subject-out so no part of the band -
-    centre or width - uses the test subject's own closed-loop trials.
+    The trajectory is refitted leave-one-subject-out, so neither the band
+    centre nor its width uses the test subject's own closed-loop trials.
     """
     hc = df[df.difficulty == 1].reset_index(drop=True)
     control = hard_control(df)
@@ -320,7 +320,7 @@ def part_d(df, prof):
 
 
 # --------------------------------------------------------------------------- #
-# E - screen every calibration measure against closed-loop outcomes
+# E. screen every calibration measure against closed-loop outcomes
 # --------------------------------------------------------------------------- #
 
 def part_e(df, prof):

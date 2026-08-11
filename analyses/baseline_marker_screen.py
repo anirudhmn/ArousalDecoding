@@ -53,7 +53,7 @@ def baseline_panel():
             r[name] = banded[256 + CH[ch] - 64].mean()
         r["pup"] = banded[[256 + CH["PUP-L"] - 64,
                            256 + CH["PUP-R"] - 64]].mean()
-        # Variability, not just level - a plausible flexibility marker.
+        # Variability, not just level, as a plausible flexibility marker.
         r["hrv_sd"] = banded[256 + CH["HRV-pNN35"] - 64].std()
         r["hr_sd"] = banded[256 + CH["HR"] - 64].std()
         r["pup_sd"] = banded[[256 + CH["PUP-L"] - 64,
