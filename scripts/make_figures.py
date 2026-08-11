@@ -900,8 +900,9 @@ def figure_7():
     ax.set_xticklabels(short + ["best band\nwidth"], fontsize=8.5, rotation=22,
                        ha="right")
     ax.set_ylabel("Split-half reliability (r)")
-    ax.set_ylim(-0.55, 1.18)
-    ax.legend(fontsize=8.5, frameon=False, loc="upper left")
+    ax.set_ylim(-0.55, 1.40)
+    ax.legend(fontsize=8, frameon=False, loc="upper left", ncol=2,
+              columnspacing=1.0, handlelength=1.3, borderpad=0.1)
     tidy(ax)
     panel(ax, "C", x=-0.24)
 
