@@ -27,12 +27,9 @@ SCHED_STEP, SCHED_GAMMA = 10, 0.1
 
 
 def get_device(prefer_gpu=True):
-    """CUDA if present, else Apple Silicon MPS, else CPU."""
-    if prefer_gpu:
-        if torch.cuda.is_available():
-            return torch.device("cuda")
-        if torch.backends.mps.is_available():
-            return torch.device("mps")
+    """CUDA if present, else CPU."""
+    if prefer_gpu and torch.cuda.is_available():
+        return torch.device("cuda")
     return torch.device("cpu")
 
 
@@ -92,16 +89,8 @@ def fit_decoder(X_train, y_train, modalities, device, seed=None):
     return model
 
 
-def integrated_gradients(model, X_val, y_val, device, n_steps=50, batch_size=8):
-    """Mean Integrated Gradients attribution over a validation fold, (C, T).
-
-    Captum builds its step-size tensor in float64, which MPS cannot hold, so on
-    Apple Silicon the attribution runs on CPU. It is a small part of the total
-    cost, and the result is identical.
-    """
-    if device.type == "mps":
-        model, X_val, y_val = model.to("cpu"), X_val.cpu(), y_val.cpu()
-
+def integrated_gradients(model, X_val, y_val, n_steps=50, batch_size=8):
+    """Mean Integrated Gradients attribution over a validation fold, (C, T)."""
     ig = IntegratedGradients(LogitsOnly(model).eval())
     attrs = []
     for i in range(0, len(X_val), batch_size):
@@ -111,8 +100,6 @@ def integrated_gradients(model, X_val, y_val, device, n_steps=50, batch_size=8):
                             internal_batch_size=min(4, len(batch)))
         attrs.append(attr.detach().cpu().numpy())
 
-    if device.type == "mps":
-        model.to(device)
     return np.concatenate(attrs, axis=0).mean(axis=0)
 
 
@@ -167,7 +154,7 @@ def within_subject_cv(ring_df, modalities, device,
                     y_pred[w, va] = preds
                     y_proba[w, va] = probs
 
-                imps += integrated_gradients(model, Xva, yva, device)
+                imps += integrated_gradients(model, Xva, yva)
 
             for w in range(n_windows):
                 final_results[sidx, rep, w, 0] = accuracy_score(y, y_pred[w])

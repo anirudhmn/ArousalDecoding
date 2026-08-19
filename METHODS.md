@@ -106,13 +106,12 @@ hardware reproduces itself. Everything downstream of the decoder is
 deterministic given the decoder outputs.
 
 Results stored from a different accelerator will not match bitwise. Retraining
-the within-subject cross-validation on Apple Silicon reproduces stored CUDA AUC
+the within-subject cross-validation on other hardware reproduces the stored AUC
 values to within about 0.15 AUC points, and continuous decoding reproduces
 stored traces at a per-trial correlation of about 0.996. Statistical agreement
 rather than bitwise agreement is the standard to expect.
 
-Approximate cost on an Apple M3 Max, using MPS for training and CPU for
-attribution:
+Approximate cost on a single consumer GPU:
 
 | stage | time |
 |---|---|
@@ -124,5 +123,5 @@ attribution:
 | the three analysis notebooks | under a minute each |
 | every other analysis script | seconds to a couple of minutes |
 
-CPU-only training of the full grid is roughly ten times slower than MPS and is
-not recommended. The analysis notebooks need no accelerator at all.
+CPU-only training of the full grid is roughly ten times slower than a GPU and
+is not recommended. The analysis notebooks need no accelerator at all.

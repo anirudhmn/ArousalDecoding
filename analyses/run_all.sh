@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Run every analysis script in dependency order.
 #
-# Four scripts train decoders and dominate the runtime. On Apple Silicon MPS,
+# Four scripts train decoders and dominate the runtime. On a single GPU,
 # budget roughly 1 h for negative_controls and motor_decoder together, 1.5 h for
 # loso_decoder (16 folds x 3 repetitions) and 1.5 h for label_controls (6 label
 # conditions x 16 subjects). cluster_permutation takes about 5 min for 10,000

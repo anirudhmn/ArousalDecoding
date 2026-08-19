@@ -20,7 +20,7 @@ pip install -e .
 ```
 
 Python 3.10 or later, PyTorch 2.0 or later. A GPU is optional. The code uses
-CUDA if present, Apple Silicon MPS if not, and falls back to CPU.
+CUDA if present and falls back to CPU.
 
 ## Data
 
