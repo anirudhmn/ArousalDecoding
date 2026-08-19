@@ -17,6 +17,7 @@ import pandas as pd
 import statsmodels.formula.api as smf
 from scipy.stats import linregress, pearsonr, spearmanr
 
+from calibration_profile import build_profile
 from common import C, OUT, Y, hard_control, trial_table
 
 RNG = np.random.default_rng(20260806)
@@ -73,6 +74,17 @@ def run():
     print(f"\nceiling check: {(m1.pct_in_band >= 99.9).mean()*100:.1f}% of trials "
           f"sit at 100% in-band")
 
+    # ---- how long an above-band excursion lasts ----------------------------
+    # The latency budget for a reactive intervention. Dips of 1 s or less are
+    # bridged and excursions shorter than 2 s are discarded as transients, so
+    # what is left is a sustained state change rather than threshold chatter.
+    print("\ndwell time above band, poorly performing trials")
+    for m in (1.0, 1.75):
+        d = C.dwell_times(hc, traj, m)
+        print(f"  m = {m:<5} n = {len(d):>3}  mean = {d.mean():.1f} +/- "
+              f"{d.std():.1f} s  median = {np.median(d):.1f} s  "
+              f"p10 = {np.percentile(d, 10):.1f} s")
+
     # ---- (b) individual differences: continuous vs median split -----------
     print("\n" + "-" * 78)
     print("Individual differences: continuous interaction as primary evidence")
@@ -87,8 +99,11 @@ def run():
               f"p={m.pvalues[term]:.4f}")
 
     # Sensitivity score as a continuous moderator of deviation-performance.
+    # The score is the calibration measure that survives the 17-measure screen,
+    # negated so that a higher value means a more arousal-sensitive subject.
+    prof = build_profile().set_index("subject")["cal_sd"]
     m1c = m1.copy()
-    m1c["score"] = -hc.hrv_z.to_numpy() + hc.gamma_z.to_numpy()
+    m1c["score"] = np.array([-float(prof.loc[int(s)]) for s in m1.subject])
     m0 = smf.mixedlm("performance ~ pct_in_band", m1c,
                      groups=m1c["subject"]).fit(reml=False)
     mi = smf.mixedlm("performance ~ pct_in_band * score", m1c,
@@ -107,11 +122,25 @@ def run():
     print("Personalisation gain, formally tested")
     print("-" * 78)
     score = m1c["score"].to_numpy()
-    med = np.median(score)
+    # Split at the median across SUBJECTS, not across trials, so that a subject
+    # with many trials does not drag the boundary. This is the same median that
+    # band_scheme_comparison.py uses inside each leave-one-subject-out fold.
+    med = np.median([score[m1c.subject.to_numpy() == s][0]
+                     for s in np.unique(m1c.subject)])
     s_i, t_i = np.where(score > med)[0], np.where(score <= med)[0]
 
-    pers = pd.concat([C.deviation_metrics(hc, traj, 1.5, s_i),
-                      C.deviation_metrics(hc, traj, 2.5, t_i)], ignore_index=True)
+    # Both group multipliers are chosen in sample, on the very trials the
+    # scheme is then scored on. That is the point of this block: it measures
+    # how much the selection alone is worth, against the honest leave-one-
+    # subject-out figure in band_scheme_comparison.py.
+    def best_mult(idx):
+        ds = C.band_width_sweep(hc, traj, idx)
+        return C.BAND_MULTIPLIERS[int(np.nanargmax(ds))]
+
+    m_sens, m_tol = best_mult(s_i), best_mult(t_i)
+    print(f"  in-sample multipliers: sensitive x{m_sens}, tolerant x{m_tol}")
+    pers = pd.concat([C.deviation_metrics(hc, traj, m_sens, s_i),
+                      C.deviation_metrics(hc, traj, m_tol, t_i)], ignore_index=True)
     # Re-order the personalised frame to match m1 row-for-row.
     order = np.concatenate([s_i, t_i])
     pers_aligned = pers.iloc[np.argsort(order)].reset_index(drop=True)
@@ -148,6 +177,12 @@ def run():
                      groups=m1b["subject"]).fit(reml=False)
     lr = 2 * (g1.llf - g0.llf)
     k = len(g1.params) - len(g0.params)
+    for lab, sel in [("sensitive", m1b.grp == 1.0), ("tolerant", m1b.grp == 0.0)]:
+        sub = m1b[sel]
+        r = pearsonr(sub.pct_in_band, sub.performance)
+        print(f"\n  pooled within the {lab} half: n = {len(sub)} trials, "
+              f"r = {r.statistic:+.3f} (p = {r.pvalue:.4f})")
+
     print(f"\n  median-split group x %in-band:")
     print(f"      beta = {g1.params['pct_in_band:grp']:+.4f}, "
           f"p = {g1.pvalues['pct_in_band:grp']:.4f}")

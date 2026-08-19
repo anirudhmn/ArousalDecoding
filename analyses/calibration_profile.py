@@ -328,8 +328,13 @@ def part_e(df, prof):
     print("(E) Holm-corrected screen of calibration measures")
     print("=" * 90)
 
-    base = df.merge(prof[["subject"] + DECODED + PHYSIO], on="subject",
-                    suffixes=("", "_cal"))
+    # The trial table carries its own baseline columns under the same names,
+    # and for the EEG bands those are the signed mean of a band-passed signal
+    # rather than real power. Drop them so the merge cannot silently prefer
+    # them over the calibration panel; see gamma_definitions.py.
+    keep = ["subject"] + DECODED + PHYSIO
+    base = df.drop(columns=[c for c in PHYSIO if c in df.columns]).merge(
+        prof[keep], on="subject")
     feats = DECODED + [f for f in PHYSIO if f in prof.columns]
     for f in feats:
         base[f + "_cz"] = (base[f] - base[f].mean()) / base[f].std()

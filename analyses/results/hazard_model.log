@@ -81,4 +81,4 @@ arousal           0-10s        10-20s        20-30s        30-40s          40s+
       full BCI feedback, which is a positive result in a place
       where the trajectory comparison only yields a null.
 
-wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/hazard_model_summary.csv
+wrote ./analyses/results/hazard_model_summary.csv

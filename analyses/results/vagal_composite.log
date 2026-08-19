@@ -45,4 +45,4 @@ Grouping, coupling and selected band width
   -> none of the three yields a significant group x coupling
      interaction; report the continuous moderation instead.
 
-wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/vagal_composite_scores.csv
+wrote ./analyses/results/vagal_composite_scores.csv

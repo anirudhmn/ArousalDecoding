@@ -30,4 +30,4 @@ Conclusion: the effect is real. It significantly exceeds what the
 length coupling produces on its own. The mixed-model p-value is
 roughly 267x too small; report p = 0.0125 instead of 4.7e-05.
 
-wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/duration_permutation_null.csv
+wrote ./analyses/results/duration_permutation_null.csv

@@ -91,15 +91,15 @@ resp                  +2.162    0.0022    0.0354  *
 hrv                   +1.099    0.0174    0.2607
 theta_beta            -2.546    0.0280    0.3921
 cal_level             -2.236    0.0293    0.3921
-gamma                 -1.207    0.0362    0.4341
-cal_volatility        -1.592    0.0381    0.4341
-cal_iqr               +1.880    0.0420    0.4341
-hrv_sd                -1.373    0.0485    0.4365
-alpha                 +0.926    0.1043    0.8343
+cal_volatility        -1.592    0.0381    0.4571
+cal_iqr               +1.880    0.0420    0.4622
+beta                  +1.050    0.0456    0.4622
+hrv_sd                -1.373    0.0485    0.4622
+gamma                 +0.674    0.1341    1.0000
 hr                    -0.752    0.3361    1.0000
-theta                 -0.675    0.3374    1.0000
+alpha                 +1.264    0.3577    1.0000
 cal_frac_high         -0.813    0.3611    1.0000
-beta                  -0.406    0.5571    1.0000
+theta                 +0.535    0.7223    1.0000
 eda_t                 +0.203    0.7586    1.0000
 pup                   +0.162    0.8356    1.0000
 eda_p                 -0.096    0.8840    1.0000
@@ -108,4 +108,4 @@ eda_p                 -0.096    0.8840    1.0000
     cal_sd           p ranges 0.0005-0.0374; still p<0.05 in 16/16 leave-one-out fits (worst when dropping subject 6)
     resp             p ranges 0.0014-0.2095; still p<0.05 in 15/16 leave-one-out fits (worst when dropping subject 6)
 
-wrote five CSVs to /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results
+wrote five CSVs to ./analyses/results

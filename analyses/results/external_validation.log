@@ -41,4 +41,4 @@ EDA-phasic       +0.302    [+0.222, +0.383]   2.24e-06     +0.334
 EDA-tonic        +0.214    [-0.019, +0.455]   9.10e-02     +0.131
 Pupil            +0.174    [+0.103, +0.250]   2.88e-04     +0.160
 
-wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/external_validation.csv
+wrote ./analyses/results/external_validation.csv

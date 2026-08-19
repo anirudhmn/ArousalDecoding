@@ -52,15 +52,15 @@ calibration screen (17 measures)  (n = 17)
     HRV                                                  1.74e-02     0.2610   xcalibration_profile
     theta/beta                                           2.80e-02     0.3920   xcalibration_profile
     calibration level                                    2.93e-02     0.3920   xcalibration_profile
-    gamma (real power)                                   3.62e-02     0.4344   xcalibration_profile
-    calibration volatility                               3.81e-02     0.4344   xcalibration_profile
-    calibration IQR                                      4.20e-02     0.4344   xcalibration_profile
-    HRV SD                                               4.85e-02     0.4365   xcalibration_profile
-    alpha                                                1.04e-01     0.8344    calibration_profile
+    calibration volatility                               3.81e-02     0.4572   xcalibration_profile
+    calibration IQR                                      4.20e-02     0.4620   xcalibration_profile
+    beta                                                 4.56e-02     0.4620   xcalibration_profile
+    HRV SD                                               4.85e-02     0.4620   xcalibration_profile
+    gamma                                                1.34e-01     1.0000    calibration_profile
     heart rate                                           3.36e-01     1.0000    calibration_profile
-    theta                                                3.37e-01     1.0000    calibration_profile
+    alpha                                                3.58e-01     1.0000    calibration_profile
     calibration frac-high                                3.61e-01     1.0000    calibration_profile
-    beta                                                 5.57e-01     1.0000    calibration_profile
+    theta                                                7.22e-01     1.0000    calibration_profile
     EDA tonic                                            7.59e-01     1.0000    calibration_profile
     pupil                                                8.36e-01     1.0000    calibration_profile
     EDA phasic                                           8.84e-01     1.0000    calibration_profile
@@ -140,10 +140,10 @@ What changes once the policy is applied
     - HRV (calibration screen (17 measures)): p = 0.0174 -> 0.2610
     - theta/beta (calibration screen (17 measures)): p = 0.0280 -> 0.3920
     - calibration level (calibration screen (17 measures)): p = 0.0293 -> 0.3920
-    - gamma (real power) (calibration screen (17 measures)): p = 0.0362 -> 0.4344
-    - calibration volatility (calibration screen (17 measures)): p = 0.0381 -> 0.4344
-    - calibration IQR (calibration screen (17 measures)): p = 0.0420 -> 0.4344
-    - HRV SD (calibration screen (17 measures)): p = 0.0485 -> 0.4365
+    - beta (calibration screen (17 measures)): p = 0.0456 -> 0.4620
+    - calibration volatility (calibration screen (17 measures)): p = 0.0381 -> 0.4572
+    - calibration IQR (calibration screen (17 measures)): p = 0.0420 -> 0.4620
+    - HRV SD (calibration screen (17 measures)): p = 0.0485 -> 0.4620
     - rate of change of arousal (within-trial control): p = 0.0261 -> 0.0783
     - random slope on arousal (LRT) (reliability): p = 0.0384 -> 0.0768
     - above-band x full BCI on 5 s hazard (feedback effects): p = 0.0400 -> 0.0800
@@ -161,4 +161,4 @@ What changes once the policy is applied
    - Cluster p-values already control error across time bins; the
      correction applied here is across the eight trajectory tests.
 
-wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/multiplicity.csv
+wrote ./analyses/results/multiplicity.csv

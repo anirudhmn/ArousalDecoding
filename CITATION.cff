@@ -15,7 +15,7 @@ authors:
     affiliation: Columbia University
 license: MIT
 version: 1.0.0
-repository-code: INSERT REPOSITORY URL BEFORE RELEASE
+repository-code: https://github.com/anirudhmn/ArousalDecoding
 abstract: >-
   Analysis code for a re-analysis of the Faller et al. (2019) boundary-avoidance
   task dataset. Trains a multimodal decoder on peripheral physiological signals,

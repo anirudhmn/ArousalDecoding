@@ -59,9 +59,19 @@ notebooks run in well under a minute each from the cached intermediates.
 
 ### Figures
 
-Every figure in the paper is built by one script. Figures 1, 2, 6 and 7 need the
-cached trial table and the stored decoder outputs; figures 3, 4 and 5 read the
-tables written by `analyses/`, so run those first.
+Every figure in the paper is built by one script. Figure 1 needs the stored
+decoder outputs, figures 3 to 6 need the cached trial table, and every figure
+except 6 also reads tables written by `analyses/`, so run those first.
+
+| figure | shows |
+|---|---|
+| 1 | decoder accuracy, generalisation and attribution |
+| 2 | validity of the decoded index |
+| 3 | the inverted-U, with both signals at matched scaling |
+| 4 | individual differences, from the calibration block |
+| 5 | what the feedback conditions do |
+| 6 | the optimal trajectory and the deviation metrics |
+| 7 | what personalisation can and cannot do |
 
 ```bash
 python scripts/make_figures.py
@@ -101,7 +111,7 @@ the statistics that read those outputs, skip the training with:
 bash analyses/run_fast.sh
 ```
 
-That takes about ten minutes and covers the other twenty-four scripts.
+That takes about ten minutes and covers the other twenty-six scripts.
 
 You can also run any one on its own once the trial table exists:
 

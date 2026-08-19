@@ -86,4 +86,4 @@ Sensitivity of the hard-course BCI-vs-silence test
      Smaller sustained differences, and any localised difference,
      remain outside what this test can exclude.
 
-wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/cluster_permutation_clusters.csv and /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/cluster_permutation_sensitivity.csv
+wrote ./analyses/results/cluster_permutation_clusters.csv and ./analyses/results/cluster_permutation_sensitivity.csv

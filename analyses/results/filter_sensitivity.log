@@ -34,4 +34,4 @@ Reading. The published filter is one row among several. If the sign,
 the significance and the rough size of each quantity hold across the
 rows, the smoothing choice is not carrying any conclusion.
 
-wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/filter_sensitivity.csv
+wrote ./analyses/results/filter_sensitivity.csv

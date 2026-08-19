@@ -184,116 +184,10 @@ def figure_1():
 
 
 # --------------------------------------------------------------------------- #
-# Figure 2: Yerkes-Dodson, at matched scaling
+# Figure 2: validity of the decoded index
 # --------------------------------------------------------------------------- #
 
 def figure_2():
-    from scaling_parity import build_variants
-
-    df = build_variants(trial_table())
-    # The scaling variants are stored as traces; the models take trial means.
-    df["eeg_subject"] = [float(np.mean(x)) for x in df["eeg_subj_cl"]]
-    df = df[np.isfinite(df["eeg_subject"])].reset_index(drop=True)
-
-    perm = pd.read_csv(RES / "duration_permutation_null.csv")
-    obs = -2.5616
-
-    models = {
-        "new_quad": Y.fit_yd_model(df, "arousal"),
-        "new_lin": Y.fit_yd_model(df, "arousal", Y.FORMULA_LINEAR),
-        "old_quad": Y.fit_yd_model(df, "eeg_subject"),
-        "old_lin": Y.fit_yd_model(df, "eeg_subject", Y.FORMULA_LINEAR),
-    }
-    aic = {k: m.aic for k, m in models.items()}
-    best = min(aic.values())
-    p_perm = float((perm.beta_quad <= obs).mean())
-
-    fig = plt.figure(figsize=(15, 4.8))
-    gs = gridspec.GridSpec(1, 4, figure=fig, wspace=0.34,
-                           width_ratios=[1, 1, 0.9, 0.9])
-    grid = np.linspace(0, 100, 300)
-
-    def plot_yd(ax, model, col, letter, xlabel, show_y=True, mark_ns=False):
-        sig = Y.quadratic_pvalues(model)
-        preds = Y.predict_curve(model, grid)
-        colours = {0: SKY, 1: RED}
-        names = {0: "Easy", 1: "Hard"}
-        if mark_ns:
-            names = {d: f"{names[d]} ({stars(sig[d])})" for d in (0, 1)}
-        for d in (0, 1):
-            sub = df[df.difficulty == d]
-            ax.scatter(sub[col], sub.performance / SEC, color=colours[d],
-                       alpha=0.28, s=13, linewidths=0, zorder=2)
-        for d in (0, 1):
-            p = preds[d]
-            ax.plot(grid, p["mean"] / SEC, color=colours[d], lw=2.4,
-                    label=names[d], zorder=3)
-            ax.fill_between(grid, p["ci_lo"] / SEC, p["ci_hi"] / SEC,
-                            color=colours[d], alpha=0.16, zorder=1)
-            opt, _ = Y.optimum_with_ci(model, d)
-            if 0 <= opt <= 100:
-                ax.axvline(opt, color=colours[d], ls="--", lw=1.1, alpha=0.7)
-        ax.set_xlabel(xlabel)
-        if show_y:
-            ax.set_ylabel("Flight time (s)")
-        ax.set_xlim(-3, 103)
-        tidy(ax)
-        panel(ax, letter, x=-0.20)
-        ax.legend(fontsize=9, frameon=False, loc="upper left", ncol=2)
-
-    ax_a = fig.add_subplot(gs[0])
-    plot_yd(ax_a, models["new_quad"], "arousal", "A", "Decoded arousal (autonomic)")
-    ax_a.text(0.03, 0.02, f"permutation $p$ = {p_perm:.4f}", transform=ax_a.transAxes,
-              fontsize=9.5, style="italic")
-
-    ax_b = fig.add_subplot(gs[1])
-    plot_yd(ax_b, models["old_quad"], "eeg_subject", "B",
-            "Decoded arousal (EEG)", show_y=False, mark_ns=True)
-
-    # -- C: permutation null --------------------------------------------------
-    ax_c = fig.add_subplot(gs[2])
-    ax_c.hist(perm.beta_quad, bins=32, color="#CCCCCC", edgecolor="white",
-              linewidth=0.5, zorder=2)
-    ax_c.axvline(obs, color=RED, lw=2.4, zorder=3)
-    ax_c.axvline(perm.beta_quad.mean(), color=BLUE, lw=1.8, ls="--", zorder=3)
-    ax_c.text(obs, ax_c.get_ylim()[1] * 0.96, " observed", color=RED,
-              fontsize=9, va="top")
-    ax_c.text(perm.beta_quad.mean(), ax_c.get_ylim()[1] * 0.72,
-              " duration-only\n mean", color=BLUE, fontsize=9, va="top")
-    ax_c.set_xlabel(r"$\beta$ (arousal$^2$)")
-    ax_c.set_ylabel("Permutations")
-    tidy(ax_c)
-    panel(ax_c, "C", x=-0.24)
-
-    # -- D: AIC ---------------------------------------------------------------
-    ax_d = fig.add_subplot(gs[3])
-    order = ["new_quad", "new_lin", "old_quad", "old_lin"]
-    names = ["Auto.\nquad.", "Auto.\nlinear", "EEG\nquad.", "EEG\nlinear"]
-    deltas = [aic[k] - best for k in order]
-    bars = ax_d.bar(range(4), deltas, color=[BLUE, BLUE, SKY, SKY],
-                    edgecolor="black", linewidth=0.7, width=0.6, zorder=2)
-    for b, h in zip(bars, ["", "///", "", "///"]):
-        b.set_hatch(h)
-    for b, v in zip(bars, deltas):
-        ax_d.text(b.get_x() + b.get_width() / 2, v + max(deltas) * 0.025,
-                  f"{v:.1f}", ha="center", va="bottom", fontsize=9)
-    ax_d.set_xticks(range(4))
-    ax_d.set_xticklabels(names, fontsize=8.5)
-    ax_d.set_ylabel(r"$\Delta$AIC (vs best)")
-    ax_d.set_ylim(0, max(deltas) * 1.28)
-    tidy(ax_d)
-    panel(ax_d, "D", x=-0.24)
-
-    save(fig, "figure_2.png")
-    print(f"    permutation p = {p_perm:.4f}; dAIC = "
-          + ", ".join(f"{k} {aic[k]-best:.1f}" for k in order))
-
-
-# --------------------------------------------------------------------------- #
-# Figure 3: validity of the decoded index
-# --------------------------------------------------------------------------- #
-
-def figure_3():
     ends = pd.read_csv(RES / "clock_check_endpoints.csv")
     mp = pd.read_csv(RES / "scaling_parity_matched_phase.csv")
     mp_motor = pd.read_csv(RES / "matched_phase_summary.csv")
@@ -404,7 +298,113 @@ def figure_3():
     tidy(ax)
     panel(ax, "D", x=-0.13)
 
+    save(fig, "figure_2.png")
+
+
+# --------------------------------------------------------------------------- #
+# Figure 3: Yerkes-Dodson, at matched scaling
+# --------------------------------------------------------------------------- #
+
+def figure_3():
+    from scaling_parity import build_variants
+
+    df = build_variants(trial_table())
+    # The scaling variants are stored as traces; the models take trial means.
+    df["eeg_subject"] = [float(np.mean(x)) for x in df["eeg_subj_cl"]]
+    df = df[np.isfinite(df["eeg_subject"])].reset_index(drop=True)
+
+    perm = pd.read_csv(RES / "duration_permutation_null.csv")
+    obs = -2.5616
+
+    models = {
+        "new_quad": Y.fit_yd_model(df, "arousal"),
+        "new_lin": Y.fit_yd_model(df, "arousal", Y.FORMULA_LINEAR),
+        "old_quad": Y.fit_yd_model(df, "eeg_subject"),
+        "old_lin": Y.fit_yd_model(df, "eeg_subject", Y.FORMULA_LINEAR),
+    }
+    aic = {k: m.aic for k, m in models.items()}
+    best = min(aic.values())
+    p_perm = float((perm.beta_quad <= obs).mean())
+
+    fig = plt.figure(figsize=(15, 4.8))
+    gs = gridspec.GridSpec(1, 4, figure=fig, wspace=0.34,
+                           width_ratios=[1, 1, 0.9, 0.9])
+    grid = np.linspace(0, 100, 300)
+
+    def plot_yd(ax, model, col, letter, xlabel, show_y=True, mark_ns=False):
+        sig = Y.quadratic_pvalues(model)
+        preds = Y.predict_curve(model, grid)
+        colours = {0: SKY, 1: RED}
+        names = {0: "Easy", 1: "Hard"}
+        if mark_ns:
+            names = {d: f"{names[d]} ({stars(sig[d])})" for d in (0, 1)}
+        for d in (0, 1):
+            sub = df[df.difficulty == d]
+            ax.scatter(sub[col], sub.performance / SEC, color=colours[d],
+                       alpha=0.28, s=13, linewidths=0, zorder=2)
+        for d in (0, 1):
+            p = preds[d]
+            ax.plot(grid, p["mean"] / SEC, color=colours[d], lw=2.4,
+                    label=names[d], zorder=3)
+            ax.fill_between(grid, p["ci_lo"] / SEC, p["ci_hi"] / SEC,
+                            color=colours[d], alpha=0.16, zorder=1)
+            opt, _ = Y.optimum_with_ci(model, d)
+            if 0 <= opt <= 100:
+                ax.axvline(opt, color=colours[d], ls="--", lw=1.1, alpha=0.7)
+        ax.set_xlabel(xlabel)
+        if show_y:
+            ax.set_ylabel("Flight time (s)")
+        ax.set_xlim(-3, 103)
+        tidy(ax)
+        panel(ax, letter, x=-0.20)
+        ax.legend(fontsize=9, frameon=False, loc="upper left", ncol=2)
+
+    ax_a = fig.add_subplot(gs[0])
+    plot_yd(ax_a, models["new_quad"], "arousal", "A", "Decoded arousal (autonomic)")
+    ax_a.text(0.03, 0.02, f"permutation $p$ = {p_perm:.4f}", transform=ax_a.transAxes,
+              fontsize=9.5, style="italic")
+
+    ax_b = fig.add_subplot(gs[1])
+    plot_yd(ax_b, models["old_quad"], "eeg_subject", "B",
+            "Decoded arousal (EEG)", show_y=False, mark_ns=True)
+
+    # -- C: permutation null --------------------------------------------------
+    ax_c = fig.add_subplot(gs[2])
+    ax_c.hist(perm.beta_quad, bins=32, color="#CCCCCC", edgecolor="white",
+              linewidth=0.5, zorder=2)
+    ax_c.axvline(obs, color=RED, lw=2.4, zorder=3)
+    ax_c.axvline(perm.beta_quad.mean(), color=BLUE, lw=1.8, ls="--", zorder=3)
+    ax_c.text(obs, ax_c.get_ylim()[1] * 0.96, " observed", color=RED,
+              fontsize=9, va="top")
+    ax_c.text(perm.beta_quad.mean(), ax_c.get_ylim()[1] * 0.72,
+              " duration-only\n mean", color=BLUE, fontsize=9, va="top")
+    ax_c.set_xlabel(r"$\beta$ (arousal$^2$)")
+    ax_c.set_ylabel("Permutations")
+    tidy(ax_c)
+    panel(ax_c, "C", x=-0.24)
+
+    # -- D: AIC ---------------------------------------------------------------
+    ax_d = fig.add_subplot(gs[3])
+    order = ["new_quad", "new_lin", "old_quad", "old_lin"]
+    names = ["Auto.\nquad.", "Auto.\nlinear", "EEG\nquad.", "EEG\nlinear"]
+    deltas = [aic[k] - best for k in order]
+    bars = ax_d.bar(range(4), deltas, color=[BLUE, BLUE, SKY, SKY],
+                    edgecolor="black", linewidth=0.7, width=0.6, zorder=2)
+    for b, h in zip(bars, ["", "///", "", "///"]):
+        b.set_hatch(h)
+    for b, v in zip(bars, deltas):
+        ax_d.text(b.get_x() + b.get_width() / 2, v + max(deltas) * 0.025,
+                  f"{v:.1f}", ha="center", va="bottom", fontsize=9)
+    ax_d.set_xticks(range(4))
+    ax_d.set_xticklabels(names, fontsize=8.5)
+    ax_d.set_ylabel(r"$\Delta$AIC (vs best)")
+    ax_d.set_ylim(0, max(deltas) * 1.28)
+    tidy(ax_d)
+    panel(ax_d, "D", x=-0.24)
+
     save(fig, "figure_3.png")
+    print(f"    permutation p = {p_perm:.4f}; dAIC = "
+          + ", ".join(f"{k} {aic[k]-best:.1f}" for k in order))
 
 
 # --------------------------------------------------------------------------- #
@@ -801,15 +801,14 @@ def figure_6():
 def figure_7():
     from scipy.stats import linregress, pearsonr, spearmanr
 
-    folds = pd.read_csv(RES / "loso_control_bands_folds.csv")
     rel = pd.read_csv(RES / "optimum_reliability.csv")
     bw = pd.read_csv(RES / "optimum_reliability_bandwidth.csv")
     params = pd.read_csv(RES / "within_trial_control_params.csv")
     uni = pd.read_csv(RES / "loso_control_bands_universal.csv")
     per = pd.read_csv(RES / "loso_control_bands_personalised.csv")
 
-    fig = plt.figure(figsize=(15, 8.6))
-    gs = gridspec.GridSpec(2, 3, figure=fig, hspace=0.46, wspace=0.34)
+    fig = plt.figure(figsize=(13.5, 8.4))
+    gs = gridspec.GridSpec(2, 2, figure=fig, hspace=0.52, wspace=0.42)
 
     # -- A: held-out gain -----------------------------------------------------
     # Every scheme is scored on the same 113 held-out trials by
@@ -818,48 +817,31 @@ def figure_7():
     # beat, and it carries no per-subject information at all.
     ax = fig.add_subplot(gs[0, 0])
     schemes = pd.read_csv(RES / "band_scheme_comparison.csv")
-    short = {"universal x1.0": "Universal $\\times$1.0",
-             "universal x1.75 (retuned)": "Universal $\\times$1.75\n(retuned, no\npersonalisation)",
-             "group widths (composite score)": "Group widths\n(composite score)",
-             "group widths (calibration marker)": "Group widths\n(calibration marker)",
-             "centre from fitted curve": "Centre from\nfitted curve",
-             "width from fitted curve": "Width from\nfitted curve"}
+    short = {"universal x1.0": "Universal $\\times$1.0\n(default)",
+             "universal x1.75 (retuned)": "Universal $\\times$1.75\n(retuned)",
+             "group widths (calibration marker)": "Group widths",
+             "width from fitted curve": "Width from\nfitted curve",
+             "centre from fitted curve": "Centre from\nfitted curve"}
     order = list(short)
     schemes = schemes.set_index("scheme").loc[order].reset_index()
-    cols = [GREY, BLACK, SKY, SKY, BLUE, BLUE]
+    cols = [GREY, BLACK, SKY, BLUE, BLUE]
     ys = np.arange(len(schemes))[::-1]
     ax.barh(ys, schemes.cohens_d, height=0.62, color=cols, edgecolor="black",
             linewidth=0.7, zorder=2)
     for y, row in zip(ys, schemes.itertuples()):
         ax.text(row.cohens_d + 0.03, y, f"d = {row.cohens_d:.2f},  "
-                f"r = {row.r:+.3f}", va="center", fontsize=8)
+                f"r = {row.r:+.3f}", va="center", fontsize=8.5)
     ax.axvline(schemes.cohens_d.iloc[1], color=BLACK, ls="--", lw=1.0,
                zorder=1)
     ax.set_yticks(ys)
-    ax.set_yticklabels([short[s] for s in schemes.scheme], fontsize=8)
+    ax.set_yticklabels([short[s] for s in schemes.scheme], fontsize=9)
     ax.set_xlabel("Cohen's d, good vs bad trials")
     ax.set_xlim(0, 1.55)
     tidy(ax, grid_axis="x")
-    panel(ax, "A", x=-0.44)
+    panel(ax, "A", x=-0.34)
 
-    # -- B: multiplier stability across folds --------------------------------
+    # -- B: reliability -------------------------------------------------------
     ax = fig.add_subplot(gs[0, 1])
-    ax.plot(folds.subject, folds.m_sens_train, "o-", color=RED, ms=6, lw=1.6,
-            label="Sensitive group")
-    ax.plot(folds.subject, folds.m_tol_train, "s-", color=BLUE, ms=6, lw=1.6,
-            label="Tolerant group")
-    ax.set_title("Group widths, composite score", fontsize=9.5, pad=6)
-    ax.set_xlabel("Held-out subject")
-    ax.set_ylabel("Selected band multiplier")
-    ax.set_ylim(0.2, 3.2)
-    ax.legend(fontsize=9, frameon=False, loc="upper left")
-    ax.text(0.5, 0.02, "sensitive 0.5 to 2.25, tolerant 1.75 to 3.0",
-            transform=ax.transAxes, ha="center", fontsize=9, style="italic")
-    tidy(ax)
-    panel(ax, "B", x=-0.24)
-
-    # -- C: reliability -------------------------------------------------------
-    ax = fig.add_subplot(gs[0, 2])
     # The residualised rows carry no subset label, so they are selected on
     # ``kind`` alone. Filtering both series on subset silently dropped the
     # residualised bars, which are the point of the panel.
@@ -890,24 +872,28 @@ def figure_7():
 
     r_bw = pearsonr(bw.half1, bw.half2)[0]
     ax.bar([len(names)], [r_bw], color=RED, **bar_kw)
-    for xi, v in zip(list(xs - 0.19) + list(xs + 0.19) + [len(names)],
-                     rr + rd + [r_bw]):
+    # Label above the whisker, not above the bar, or the two collide.
+    tops = ([rr[i] + abs(err_r[1][i]) for i in range(len(names))]
+            + [rd[i] + abs(err_d[1][i]) for i in range(len(names))] + [r_bw])
+    for xi, v, top in zip(list(xs - 0.19) + list(xs + 0.19) + [len(names)],
+                          rr + rd + [r_bw], tops):
         if np.isfinite(v):
-            ax.text(xi, v + 0.035 if v >= 0 else v - 0.075, f"{v:+.2f}",
-                    ha="center", fontsize=8, color="#333333")
+            y = (top if np.isfinite(top) else v) + 0.045 if v >= 0 else v - 0.085
+            ax.text(xi, y, f"{v:+.2f}", ha="center", fontsize=8,
+                    color="#333333")
     ax.axhline(0, color=BLACK, lw=1.0)
     ax.set_xticks(list(xs) + [len(names)])
     ax.set_xticklabels(short + ["best band\nwidth"], fontsize=8.5, rotation=22,
                        ha="right")
     ax.set_ylabel("Split-half reliability (r)")
     ax.set_ylim(-0.55, 1.40)
-    ax.legend(fontsize=8, frameon=False, loc="upper left", ncol=2,
+    ax.legend(fontsize=8.5, frameon=False, loc="upper left", ncol=2,
               columnspacing=1.0, handlelength=1.3, borderpad=0.1)
     tidy(ax)
-    panel(ax, "C", x=-0.24)
+    panel(ax, "B", x=-0.22)
 
-    # -- D: within-trial control parameters ----------------------------------
-    ax = fig.add_subplot(gs[1, :2])
+    # -- C: within-trial control parameters ----------------------------------
+    ax = fig.add_subplot(gs[1, 0])
     keep = ["above universal band (reference)",
             "above per-subject band (calibration SD)",
             "above ADAPTIVE band (trailing 10 s SD)",
@@ -934,13 +920,13 @@ def figure_7():
     ax.text(50.05, len(keep) - 0.35, "chance", fontsize=9)
     ax.set_yticks(ys)
     ax.set_yticklabels(nice, fontsize=9)
-    ax.set_xlabel("AUC for crashing within 5 s, stratified by time bin (%)")
+    ax.set_xlabel("AUC for crashing within 5 s,\nstratified by time bin (%)")
     ax.set_xlim(49, 61)
     tidy(ax, grid_axis="x")
-    panel(ax, "D", x=-0.20)
+    panel(ax, "C", x=-0.34)
 
-    # -- E: does it add over the fixed rule? ---------------------------------
-    ax = fig.add_subplot(gs[1, 2])
+    # -- D: does it add over the fixed rule? ---------------------------------
+    ax = fig.add_subplot(gs[1, 1])
     added = [("adaptive band", 0.77), ("sustained ($\\geq$3 s)", 0.13),
              ("rate of change", 0.026), ("graded excess over\nadaptive band", 6.6e-4)]
     ys = np.arange(len(added))[::-1]
@@ -953,9 +939,9 @@ def figure_7():
     ax.set_yticks(ys)
     ax.set_yticklabels([a[0] for a in added], fontsize=9)
     ax.set_xlabel(r"$-\log_{10} p$, added over the fixed band")
-    ax.set_xlim(0, 4.4)
+    ax.set_xlim(0, 4.6)
     tidy(ax, grid_axis="x")
-    panel(ax, "E", x=-0.40)
+    panel(ax, "D", x=-0.30)
 
     save(fig, "figure_7.png")
     rho_bw = spearmanr(bw.half1, bw.half2)[0]

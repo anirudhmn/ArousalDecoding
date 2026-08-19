@@ -77,4 +77,4 @@ EEG, per-subject + IIR + warm-up  all crossings, + time + t^2         +1.19     
 EEG, per-subject + IIR + warm-up  large rings only, + time            -0.83     2.10e-01    4853
 
 
-wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/scaling_parity_yerkes.csv and /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/scaling_parity_matched_phase.csv
+wrote ./analyses/results/scaling_parity_yerkes.csv and ./analyses/results/scaling_parity_matched_phase.csv
