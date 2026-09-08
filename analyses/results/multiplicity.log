@@ -117,7 +117,7 @@ trajectory clusters  (n = 4)
     hard: BCI vs silence                                 2.69e-01     0.6627    cluster_permutation
     hard: omnibus                                        2.74e-01     0.6627    cluster_permutation
 
-external validation  (n = 5)
+convergent physiology  (n = 5)
   test                                                          p       Holm        src
     HR                                                   5.34e-09     0.0000   *external_validation
     EDA-phasic                                           2.24e-06     0.0000   *external_validation
@@ -127,7 +127,7 @@ external validation  (n = 5)
 
   * survives correction within its family
   x significant uncorrected, does not survive
-  P pre-specified primary test
+  P a priori primary test
 
 ================================================================================================
 What changes once the policy is applied
@@ -161,4 +161,4 @@ What changes once the policy is applied
    - Cluster p-values already control error across time bins; the
      correction applied here is across the eight trajectory tests.
 
-wrote ./analyses/results/multiplicity.csv
+wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/multiplicity.csv

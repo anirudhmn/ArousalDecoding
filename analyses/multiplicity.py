@@ -10,7 +10,7 @@ The policy:
   * A family is a set of tests that address one question with interchangeable
     outcomes. Reporting the smallest of several such tests is what inflates
     error, so those are corrected together.
-  * Pre-specified primary tests are their own family of one. HRV was specified
+  * A priori primary tests are their own family of one. HRV was specified
     a priori from Thayer et al., while the 17-measure calibration screen was
     not, so the screen is corrected and the a-priori test is not. That
     distinction is stated rather than applied silently, and HRV is listed in
@@ -182,11 +182,11 @@ ENTRIES = [
      "cluster_permutation", False),
 
     # -- external validation ------------------------------------------------
-    ("external validation", "HR", 5.34e-09, "external_validation", False),
-    ("external validation", "HRV-pNN35", 1.93e-04, "external_validation", False),
-    ("external validation", "EDA-phasic", 2.24e-06, "external_validation", False),
-    ("external validation", "EDA-tonic", 9.10e-02, "external_validation", False),
-    ("external validation", "Pupil", 2.88e-04, "external_validation", False),
+    ("convergent physiology", "HR", 5.34e-09, "external_validation", False),
+    ("convergent physiology", "HRV-pNN35", 1.93e-04, "external_validation", False),
+    ("convergent physiology", "EDA-phasic", 2.24e-06, "external_validation", False),
+    ("convergent physiology", "EDA-tonic", 9.10e-02, "external_validation", False),
+    ("convergent physiology", "Pupil", 2.88e-04, "external_validation", False),
 ]
 
 
@@ -213,7 +213,7 @@ def run():
 
     print("\n  * survives correction within its family")
     print("  x significant uncorrected, does not survive")
-    print("  P pre-specified primary test")
+    print("  P a priori primary test")
 
     print("\n" + "=" * 96)
     print("What changes once the policy is applied")

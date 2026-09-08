@@ -1,4 +1,10 @@
-"""External validation of the decoded index against raw physiology.
+"""Convergent physiological validation of the decoded index against raw physiology.
+
+The manuscript called this external validation until the second revision. It is
+not: these channels are inputs to the peripheral decoder, so the correlations
+show that the index stays tied to the physiology it was built from rather than
+validating it against an independent criterion. The file keeps its name because
+the code-availability section refers to it.
 
 A correlation between decoded arousal and a raw physiological channel can be
 computed in several defensible ways, and they do not agree. This enumerates the
