@@ -68,6 +68,9 @@ ENTRIES = [
     ("Yerkes-Dodson", "trial-mean quadratic, duration-stratified permutation",
      0.0125, "duration_permutation", True),
     ("Yerkes-Dodson", "landmark analysis at L = 30 s", 0.0328, "landmark_analysis", False),
+    # Superseded by hazard_glmm.py: refitted as a binomial survival model the
+    # quadratic is p = 0.11 and its interval covers zero. The p-value below is
+    # the test as originally specified, which is what this registry records.
     ("Yerkes-Dodson", "hazard quadratic, 5 s-bin fixed effects", 3.5e-10,
      "hazard_model", False),
 
