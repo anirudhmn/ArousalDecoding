@@ -41,6 +41,7 @@ for script in \
     cluster_permutation clock_check optimum_reliability \
     calibration_profile band_width_limits within_trial_control \
     individual_reactivity band_scheme_comparison filter_sensitivity \
+    hazard_glmm \
     multiplicity
 do
     echo "=== $script"

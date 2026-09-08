@@ -111,7 +111,7 @@ the statistics that read those outputs, skip the training with:
 bash analyses/run_fast.sh
 ```
 
-That takes about ten minutes and covers the other twenty-six scripts.
+That takes about ten minutes and covers the other twenty-seven scripts.
 
 You can also run any one on its own once the trial table exists:
 
@@ -140,6 +140,7 @@ python analyses/matched_phase.py
 | `trial_mean_simulation` | can the trial-mean estimator manufacture an inverted-U? |
 | `landmark_analysis` | does the inverted-U hold in a length-safe landmark regression? |
 | `hazard_model` | does arousal predict crashing within the next few seconds? |
+| `hazard_glmm` | do the hazard results hold under a binomial discrete-time survival model? |
 | `band_limbs` | are both limbs of the inverted-U supported? |
 | `failure_locked_arousal` | does arousal escalate into failure events, and does feedback change that? |
 | `cluster_permutation` | do the condition trajectories differ, and what size of difference could be detected? |
