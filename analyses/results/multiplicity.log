@@ -45,7 +45,7 @@ a priori (family of one)  (n = 1)
   test                                                          p       Holm        src
   P arousal^2 x HRV                                      1.74e-02     0.0174   *t3/vagal_composite
 
-calibration screen (17 measures)  (n = 17)
+calibration screen (17)  (n = 17)
   test                                                          p       Holm        src
     calibration arousal SD                               1.60e-03     0.0272   *calibration_profile
     respiration                                          2.20e-03     0.0352   *calibration_profile
@@ -65,23 +65,20 @@ calibration screen (17 measures)  (n = 17)
     pupil                                                8.36e-01     1.0000    calibration_profile
     EDA phasic                                           8.84e-01     1.0000    calibration_profile
 
-group moderation  (n = 4)
+group moderation  (n = 3)
   test                                                          p       Holm        src
-  P continuous sensitivity x %in-band                    7.66e-02     0.3064    clustered_statistics
-    universal vs personalised band x %in-band            2.89e-01     0.8658    clustered_statistics
-    median-split group x %in-band                        4.35e-01     0.8692    clustered_statistics
-    per-subject slopes, sensitive vs tolerant            7.39e-01     0.8692    clustered_statistics
+  P continuous sensitivity x %in-band                    1.93e-01     0.5775    clustered_statistics
+    median-split group x %in-band                        5.38e-01     1.0000    clustered_statistics
+    per-subject slopes, sensitive vs tolerant            8.61e-01     1.0000    clustered_statistics
 
-held-out control bands  (n = 9)
+held-out control bands  (n = 7)
   test                                                          p       Holm        src
-    retuned universal vs default                         6.40e-02     0.5760    band_scheme_comparison
-    group widths (composite) vs default                  1.94e-01     1.0000    band_scheme_comparison
+    retuned universal vs default                         6.40e-02     0.4480    band_scheme_comparison
     width from fitted curve vs default                   2.92e-01     1.0000    band_scheme_comparison
     width from fitted curve vs retuned                   3.44e-01     1.0000    band_scheme_comparison
-    group widths (calibration marker) vs default         3.54e-01     1.0000    band_scheme_comparison
+    group widths vs default                              3.54e-01     1.0000    band_scheme_comparison
     centre from fitted curve vs default                  4.07e-01     1.0000    band_scheme_comparison
-    group widths (calibration marker) vs retuned         7.52e-01     1.0000    band_scheme_comparison
-    group widths (composite) vs retuned                  8.06e-01     1.0000    band_scheme_comparison
+    group widths vs retuned                              7.52e-01     1.0000    band_scheme_comparison
     centre from fitted curve vs retuned                  9.07e-01     1.0000    band_scheme_comparison
 
 individual reactivity  (n = 5)
@@ -133,17 +130,17 @@ convergent physiology  (n = 5)
 What changes once the policy is applied
 ================================================================================================
 
-  78 tests in 15 families; 45 significant uncorrected, 33 after correction.
+  75 tests in 15 families; 45 significant uncorrected, 33 after correction.
 
   Loses significance under its family's correction:
     - real vs phase-perm (0.8% changed) (label controls): p = 0.0480 -> 0.1920
-    - HRV (calibration screen (17 measures)): p = 0.0174 -> 0.2610
-    - theta/beta (calibration screen (17 measures)): p = 0.0280 -> 0.3920
-    - calibration level (calibration screen (17 measures)): p = 0.0293 -> 0.3920
-    - beta (calibration screen (17 measures)): p = 0.0456 -> 0.4620
-    - calibration volatility (calibration screen (17 measures)): p = 0.0381 -> 0.4572
-    - calibration IQR (calibration screen (17 measures)): p = 0.0420 -> 0.4620
-    - HRV SD (calibration screen (17 measures)): p = 0.0485 -> 0.4620
+    - HRV (calibration screen (17)): p = 0.0174 -> 0.2610
+    - theta/beta (calibration screen (17)): p = 0.0280 -> 0.3920
+    - calibration level (calibration screen (17)): p = 0.0293 -> 0.3920
+    - beta (calibration screen (17)): p = 0.0456 -> 0.4620
+    - calibration volatility (calibration screen (17)): p = 0.0381 -> 0.4572
+    - calibration IQR (calibration screen (17)): p = 0.0420 -> 0.4620
+    - HRV SD (calibration screen (17)): p = 0.0485 -> 0.4620
     - rate of change of arousal (within-trial control): p = 0.0261 -> 0.0783
     - random slope on arousal (LRT) (reliability): p = 0.0384 -> 0.0768
     - above-band x full BCI on 5 s hazard (feedback effects): p = 0.0400 -> 0.0800

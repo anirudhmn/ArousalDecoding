@@ -95,4 +95,12 @@
     together, the fixed excess keeps the effect and the adaptive one
     contributes nothing. The published ordering reverses.
 
+  Does each parameter add information over the fixed rule?
+     (the four tests behind figure 7D, refitted)
+    parameter                 on top of            published LMM     person-period
+    above_adaptive            above                     7.70e-01            0.8590
+    sustained                 above                     1.28e-01            0.7813
+    rate                      above                     2.61e-02            0.9232
+    excess_adaptive           excess_fixed              6.56e-04            0.8546
+
 wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/hazard_glmm_curvature.csv and four others

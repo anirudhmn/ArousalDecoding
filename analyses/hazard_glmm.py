@@ -102,10 +102,13 @@ def build(df):
     for r in df[df.difficulty == 1].itertuples():
         a = C._binned_arousal(r.new_arousal)
         n = len(a)
+        run_above = 0
         for t in range(n):
             if t >= len(opt) or np.isnan(opt[t]) or np.isnan(sd[t]):
                 continue
             hi_fixed = opt[t] + 1.00 * sd[t]
+            run_above = run_above + 1 if a[t] > hi_fixed else 0
+            rate = (a[t] - a[max(0, t - 3)]) / max(1, min(3, t))
             local = a[max(0, t - TRAIL):t + 1]
             local_sd = float(np.std(local)) if len(local) > 2 else float(sd[t])
             hi_adapt = opt[t] + max(local_sd, 1.0)
@@ -113,6 +116,9 @@ def build(df):
                 "subject": r.subject, "trial": f"{r.subject}_{r.trial}",
                 "t": t, "tb": min(t // 5, 11), "arousal": a[t],
                 "above": float(a[t] > hi_fixed),
+                "above_adaptive": float(a[t] > hi_adapt),
+                "sustained": float(run_above >= 3),
+                "rate": rate,
                 "excess_fixed": max(0.0, a[t] - hi_fixed),
                 "excess_adaptive": max(0.0, a[t] - hi_adapt),
                 "crash5": float(n - t <= HORIZON),
@@ -132,7 +138,10 @@ def person_period(h):
            .agg(arousal=("arousal", "mean"), event=("event", "max"),
                 excess_fixed=("excess_fixed", "mean"),
                 excess_adaptive=("excess_adaptive", "mean"),
-                above=("above", "max"))
+                above=("above", "max"),
+                above_adaptive=("above_adaptive", "max"),
+                sustained=("sustained", "max"),
+                rate=("rate", "mean"))
            .reset_index())
     g["trial"] = g["trial"].astype(str).astype(object)
     g["tsec"] = g["k"] * RISK
@@ -401,6 +410,24 @@ def part_c(h, g):
     print("    ADAPTIVE reference adds information over the fixed one: entered")
     print("    together, the fixed excess keeps the effect and the adaptive one")
     print("    contributes nothing. The published ordering reverses.")
+
+    print("\n  Does each parameter add information over the fixed rule?")
+    print("     (the four tests behind figure 7D, refitted)")
+    print(f"    {'parameter':<26}{'on top of':<16}{'published LMM':>18}"
+          f"{'person-period':>18}")
+    for extra, base in [("above_adaptive", "above"), ("sustained", "above"),
+                        ("rate", "above"), ("excess_adaptive", "excess_fixed")]:
+        mf = smf.mixedlm(f"crash5 ~ {base} + {extra} + C(tb)", h,
+                         groups=h.subject).fit(reml=False)
+        mb = smf.mixedlm(f"crash5 ~ {base} + C(tb)", h,
+                         groups=h.subject).fit(reml=False)
+        p_lmm = chi2.sf(max(2 * (mf.llf - mb.llf), 0), 1)
+        mm = _gee(f"event ~ {base} + {extra} + C(strat)", g, "subject", CLOGLOG)
+        print(f"    {extra:<26}{base:<16}{p_lmm:>18.2e}"
+              f"{mm.pvalues[extra]:>18.4f}")
+        rows.append(dict(outcome="event", model=f"{extra} added over {base}",
+                         beta=mm.params[extra], p=mm.pvalues[extra],
+                         p_published=p_lmm))
 
     pd.DataFrame(rows).to_csv(OUT / "hazard_glmm_bandcompare.csv", index=False)
     return pd.DataFrame(rows)

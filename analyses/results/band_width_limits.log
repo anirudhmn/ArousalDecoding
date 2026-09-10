@@ -55,7 +55,7 @@ INVERTED, amplified x4                 0.50-3.00   +0.236     -0.78
 
   best SINGLE universal multiplier: 1.75 (r = +0.286)
   so of the -0.053 oracle gain, +0.016 is available without personalising at all;
-  only -0.068 is genuinely person-specific - and that figure is
+  only -0.068 is genuinely person-specific, and that figure is
   inflated, because the oracle chose in sample.
 
 ========================================================================================
@@ -88,7 +88,7 @@ Verdict
      not between them (+0.190, ns at n = 16). A per-subject multiplier is a
      constant within a subject, so it can barely reorder that subject's trials
      - a 6x change in width leaves the ordering correlated at r = +0.886 with
-     the universal band - while it does shift each subject's mean, injecting
+     the universal band. It does shift each subject's mean, injecting
      between-subject variance that the pooled statistic then pays for. That is
      why per-subject widths score BELOW universal on the pooled metric.
   4  PARTLY. Scored fairly, within subject, an in-sample oracle does gain
@@ -98,6 +98,6 @@ Verdict
      ~11 trials per subject.
 
   So: band width is the wrong knob, and the limit is the design, not the
-  predictor. Saturation compounds it - widening the band pins 21% -> 43% of
+  predictor. Saturation compounds it: widening the band pins 21% -> 43% of
   trials at 100% in-band, discarding exactly the discrimination the metric
   needs.

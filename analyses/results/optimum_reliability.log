@@ -50,7 +50,7 @@ Is that reliability anything more than the subject's overall level?
      performance-weighted arousal     r = +0.141  95% [-0.21, +0.48]
 
   If the residualised reliability includes zero, the stable individual
-  difference is arousal LEVEL, not an individual optimum - and the
+  difference is arousal LEVEL, not an individual optimum, and the
   per-subject rescaling in the decoder already normalises level.
 
 ========================================================================================
@@ -103,4 +103,4 @@ Is that reliability anything more than the subject's overall level?
   If personalisation works, deviation from the subject's OWN optimum
   should predict performance better than deviation from the group's.
 
-wrote four CSVs to ./analyses/results
+wrote four CSVs to /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results

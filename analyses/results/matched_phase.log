@@ -2,14 +2,14 @@
 Matched-phase course discrimination
 ==============================================================================
 
-Calibration block (condition 0) - the decoder's training set
+Calibration block (condition 0), the decoder's training set
 ring_size         large  medium  small   All
 trial_difficulty                            
 easy               2025    1658    405  4088
 All                2025    1658    405  4088
   trials: 136
 
-Closed-loop block (conditions 1-3) - where it is applied
+Closed-loop block (conditions 1-3), where it is applied
 ring_size         large  medium  small   All
 trial_difficulty                            
 easy               2662    2334    691  5687
@@ -64,4 +64,4 @@ bin
 (40, 50]    59.4  49.5        -10.0
 (50, 90]    62.0  45.5        -16.5
 
-wrote ./analyses/results/matched_phase_summary.csv
+wrote /Users/anirudh/Desktop/PhD/Boundary Task/arousal-decoding/analyses/results/matched_phase_summary.csv

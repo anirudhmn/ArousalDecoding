@@ -39,4 +39,4 @@ log_power         +0.441    0.3375   not significant           4
 (the stored feature is signed_mean; 'group flips' counts subjects
  changing sensitivity group relative to it)
 
-for contrast, arousal^2 x HRV: beta=+1.099, p=0.0174  (unaffected - HRV has one definition)
+for contrast, arousal^2 x HRV: beta=+1.099, p=0.0174  (unaffected, HRV has one definition)

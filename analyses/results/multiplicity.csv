@@ -24,34 +24,31 @@ Table 1,% time in band,0.0001,clustered_statistics,False,0.0004,True
 Table 1,mean excursion magnitude,0.0097,clustered_statistics,False,0.0097,True
 Table 1,excursion rate,0.0001,clustered_statistics,False,0.0004,True
 a priori (family of one),arousal^2 x HRV,0.0174,t3/vagal_composite,True,0.0174,True
-calibration screen (17 measures),calibration arousal SD,0.0016,calibration_profile,False,0.027200000000000002,True
-calibration screen (17 measures),respiration,0.0022,calibration_profile,False,0.0352,True
-calibration screen (17 measures),HRV,0.0174,calibration_profile,False,0.261,False
-calibration screen (17 measures),theta/beta,0.028,calibration_profile,False,0.392,False
-calibration screen (17 measures),calibration level,0.0293,calibration_profile,False,0.392,False
-calibration screen (17 measures),beta,0.0456,calibration_profile,False,0.462,False
-calibration screen (17 measures),calibration volatility,0.0381,calibration_profile,False,0.45720000000000005,False
-calibration screen (17 measures),calibration IQR,0.042,calibration_profile,False,0.462,False
-calibration screen (17 measures),HRV SD,0.0485,calibration_profile,False,0.462,False
-calibration screen (17 measures),gamma,0.1341,calibration_profile,False,1.0,False
-calibration screen (17 measures),heart rate,0.3361,calibration_profile,False,1.0,False
-calibration screen (17 measures),alpha,0.3577,calibration_profile,False,1.0,False
-calibration screen (17 measures),calibration frac-high,0.3611,calibration_profile,False,1.0,False
-calibration screen (17 measures),theta,0.7223,calibration_profile,False,1.0,False
-calibration screen (17 measures),EDA tonic,0.7586,calibration_profile,False,1.0,False
-calibration screen (17 measures),pupil,0.8356,calibration_profile,False,1.0,False
-calibration screen (17 measures),EDA phasic,0.884,calibration_profile,False,1.0,False
-group moderation,continuous sensitivity x %in-band,0.0766,clustered_statistics,True,0.3064,False
-group moderation,median-split group x %in-band,0.4346,clustered_statistics,False,0.8692,False
-group moderation,universal vs personalised band x %in-band,0.2886,clustered_statistics,False,0.8658000000000001,False
-group moderation,"per-subject slopes, sensitive vs tolerant",0.739,clustered_statistics,False,0.8692,False
-held-out control bands,retuned universal vs default,0.064,band_scheme_comparison,False,0.5760000000000001,False
-held-out control bands,group widths (composite) vs default,0.194,band_scheme_comparison,False,1.0,False
-held-out control bands,group widths (calibration marker) vs default,0.354,band_scheme_comparison,False,1.0,False
+calibration screen (17),calibration arousal SD,0.0016,calibration_profile,False,0.027200000000000002,True
+calibration screen (17),respiration,0.0022,calibration_profile,False,0.0352,True
+calibration screen (17),HRV,0.0174,calibration_profile,False,0.261,False
+calibration screen (17),theta/beta,0.028,calibration_profile,False,0.392,False
+calibration screen (17),calibration level,0.0293,calibration_profile,False,0.392,False
+calibration screen (17),beta,0.0456,calibration_profile,False,0.462,False
+calibration screen (17),calibration volatility,0.0381,calibration_profile,False,0.45720000000000005,False
+calibration screen (17),calibration IQR,0.042,calibration_profile,False,0.462,False
+calibration screen (17),HRV SD,0.0485,calibration_profile,False,0.462,False
+calibration screen (17),gamma,0.1341,calibration_profile,False,1.0,False
+calibration screen (17),heart rate,0.3361,calibration_profile,False,1.0,False
+calibration screen (17),alpha,0.3577,calibration_profile,False,1.0,False
+calibration screen (17),calibration frac-high,0.3611,calibration_profile,False,1.0,False
+calibration screen (17),theta,0.7223,calibration_profile,False,1.0,False
+calibration screen (17),EDA tonic,0.7586,calibration_profile,False,1.0,False
+calibration screen (17),pupil,0.8356,calibration_profile,False,1.0,False
+calibration screen (17),EDA phasic,0.884,calibration_profile,False,1.0,False
+group moderation,continuous sensitivity x %in-band,0.1925,clustered_statistics,True,0.5775,False
+group moderation,median-split group x %in-band,0.538,clustered_statistics,False,1.0,False
+group moderation,"per-subject slopes, sensitive vs tolerant",0.861,clustered_statistics,False,1.0,False
+held-out control bands,retuned universal vs default,0.064,band_scheme_comparison,False,0.448,False
+held-out control bands,group widths vs default,0.354,band_scheme_comparison,False,1.0,False
 held-out control bands,centre from fitted curve vs default,0.407,band_scheme_comparison,False,1.0,False
 held-out control bands,width from fitted curve vs default,0.292,band_scheme_comparison,False,1.0,False
-held-out control bands,group widths (composite) vs retuned,0.806,band_scheme_comparison,False,1.0,False
-held-out control bands,group widths (calibration marker) vs retuned,0.752,band_scheme_comparison,False,1.0,False
+held-out control bands,group widths vs retuned,0.752,band_scheme_comparison,False,1.0,False
 held-out control bands,centre from fitted curve vs retuned,0.907,band_scheme_comparison,False,1.0,False
 held-out control bands,width from fitted curve vs retuned,0.344,band_scheme_comparison,False,1.0,False
 individual reactivity,random slope on excess above fixed band,4.02e-10,individual_reactivity,False,1.608e-09,True
@@ -72,8 +69,8 @@ trajectory clusters,hard: omnibus,0.2741,cluster_permutation,False,0.66270000000
 trajectory clusters,hard: BCI vs silence,0.269,cluster_permutation,False,0.6627000000000001,False
 trajectory clusters,hard: BCI vs half-sham,0.0228,cluster_permutation,False,0.0912,False
 trajectory clusters,hard: BCI vs half-sham (2nd cluster),0.2209,cluster_permutation,False,0.6627000000000001,False
-external validation,HR,5.34e-09,external_validation,False,2.67e-08,True
-external validation,HRV-pNN35,0.000193,external_validation,False,0.000579,True
-external validation,EDA-phasic,2.24e-06,external_validation,False,8.96e-06,True
-external validation,EDA-tonic,0.091,external_validation,False,0.091,False
-external validation,Pupil,0.000288,external_validation,False,0.000579,True
+convergent physiology,HR,5.34e-09,external_validation,False,2.67e-08,True
+convergent physiology,HRV-pNN35,0.000193,external_validation,False,0.000579,True
+convergent physiology,EDA-phasic,2.24e-06,external_validation,False,8.96e-06,True
+convergent physiology,EDA-tonic,0.091,external_validation,False,0.091,False
+convergent physiology,Pupil,0.000288,external_validation,False,0.000579,True

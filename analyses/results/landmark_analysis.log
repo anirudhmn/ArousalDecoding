@@ -25,5 +25,5 @@ full model at L = 30 s:
    I(arousal ** 2)    beta= -0.0021  95% CI [-0.0041, -0.0002]  p=0.0328
    optimum arousal = 23.4
 
-specificity check - motor index at the same landmark:
+specificity check, motor index at the same landmark:
    beta_quad=+0.0005  p=0.623  dAIC=+1.8  vertex=102.8
