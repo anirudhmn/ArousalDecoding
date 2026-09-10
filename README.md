@@ -113,6 +113,14 @@ bash analyses/run_fast.sh
 
 That takes about ten minutes and covers the other twenty-seven scripts.
 
+If you would rather not open a notebook, `scripts/build_trial_table.py` writes
+the same `data/trial_table.pkl` that notebook 03 caches, from the stored decoder
+output.
+
+```bash
+python scripts/build_trial_table.py
+```
+
 You can also run any one on its own once the trial table exists:
 
 ```bash
