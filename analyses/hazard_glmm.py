@@ -408,7 +408,8 @@ def part_c(h, B):
                          p=m2.pvalues[c]))
 
     print("\n  does each parameter add information over the fixed rule?")
-    print(f"    {'parameter':<20}{'on top of':<16}{'published':>13}{'5 s blocks':>13}")
+    print(f"    {'parameter':<20}{'on top of':<14}{'published':>12}"
+          f"{'GEE on trial':>14}{'5 s blocks':>13}")
     for extra, base in [("above_adaptive", "above"), ("sustained", "above"),
                         ("rate", "above"), ("excess_adaptive", "excess_fixed")]:
         f1 = smf.mixedlm(f"crash5 ~ {base} + {extra} + C(tb)", h,
@@ -416,11 +417,16 @@ def part_c(h, B):
         f0 = smf.mixedlm(f"crash5 ~ {base} + C(tb)", h,
                          groups=h.subject).fit(reml=False)
         p_pub = chi2.sf(max(2 * (f1.llf - f0.llf), 0), 1)
+        # Primary: the published outcome and bins, errors clustered on trial.
+        g1 = sm.GEE.from_formula(f"crash5 ~ {base} + {extra} + C(tb)",
+                                 groups=h["trial"], data=h, family=LOGIT,
+                                 cov_struct=sm.cov_struct.Exchangeable()).fit()
         m2 = gee(f"event ~ {base} + {extra} + C(strat)", B)
-        print(f"    {extra:<20}{base:<16}{p_pub:>13.2e}{m2.pvalues[extra]:>13.4f}")
-        rows.append(dict(model=f"{extra} added over {base}, 5 s blocks",
-                         beta=m2.params[extra], p=m2.pvalues[extra],
-                         p_published=p_pub))
+        print(f"    {extra:<20}{base:<14}{p_pub:>12.2e}"
+              f"{g1.pvalues[extra]:>14.4f}{m2.pvalues[extra]:>13.4f}")
+        rows.append(dict(model=f"{extra} added over {base}",
+                         beta=g1.params[extra], p=g1.pvalues[extra],
+                         p_blocks=m2.pvalues[extra], p_published=p_pub))
 
     pd.DataFrame(rows).to_csv(OUT / "hazard_glmm_bandcompare.csv", index=False)
     return pd.DataFrame(rows)

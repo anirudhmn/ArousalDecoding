@@ -76,11 +76,11 @@ primary frame: 1584 non-overlapping 5 s blocks
     excess_adaptive    beta = +0.0134, p = 0.0701
 
   does each parameter add information over the fixed rule?
-    parameter           on top of           published   5 s blocks
-    above_adaptive      above                7.70e-01       0.8267
-    sustained           above                1.28e-01       0.4200
-    rate                above                2.61e-02       0.4456
-    excess_adaptive     excess_fixed         6.56e-04       0.8018
+    parameter           on top of        published  GEE on trial   5 s blocks
+    above_adaptive      above             7.70e-01        0.8551       0.8267
+    sustained           above             1.28e-01        0.1942       0.4200
+    rate                above             2.61e-02        0.1107       0.4456
+    excess_adaptive     excess_fixed      6.56e-04        0.6820       0.8018
 
 ================================================================================================
 (D)  FEEDBACK x ABOVE-BAND
