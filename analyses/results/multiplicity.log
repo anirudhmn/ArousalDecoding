@@ -30,9 +30,9 @@ validity  (n = 3)
 
 Yerkes-Dodson  (n = 3)
   test                                                          p       Holm        src
-    hazard quadratic, 5 s-bin fixed effects              3.50e-10     0.0000   *hazard_model
-  P trial-mean quadratic, duration-stratified permutation   1.25e-02     0.0250   *duration_permutation
-    landmark analysis at L = 30 s                        3.28e-02     0.0328   *landmark_analysis
+  P trial-mean quadratic, duration-stratified permutation   1.25e-02     0.0375   *duration_permutation
+    landmark analysis at L = 30 s                        3.28e-02     0.0656   xlandmark_analysis
+    hazard quadratic, non-overlapping 5 s blocks         5.23e-02     0.0656    hazard_glmm
 
 Table 1  (n = 4)
   test                                                          p       Holm        src
@@ -130,10 +130,11 @@ convergent physiology  (n = 5)
 What changes once the policy is applied
 ================================================================================================
 
-  75 tests in 15 families; 45 significant uncorrected, 33 after correction.
+  75 tests in 15 families; 44 significant uncorrected, 31 after correction.
 
   Loses significance under its family's correction:
     - real vs phase-perm (0.8% changed) (label controls): p = 0.0480 -> 0.1920
+    - landmark analysis at L = 30 s (Yerkes-Dodson): p = 0.0328 -> 0.0656
     - HRV (calibration screen (17)): p = 0.0174 -> 0.2610
     - theta/beta (calibration screen (17)): p = 0.0280 -> 0.3920
     - calibration level (calibration screen (17)): p = 0.0293 -> 0.3920

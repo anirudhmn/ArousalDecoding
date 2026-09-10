@@ -1,9 +1,15 @@
-signal,test,stat,p,null_mean
-excess_fixed,LMM random-slope LRT (published),43.26999707322102,4.0182737433582255e-10,
-excess_fixed,"permutation, slope spread (SD)",0.02454376037126396,0.487256371814093,0.03297189133964194
-excess_fixed,"permutation, slope spread (IQR)",0.02624443225297836,0.44377811094452774,0.02580855857969235
-excess_fixed,"permutation, slope spread (MAD)",0.013153637956141287,0.5032483758120939,0.01345801488159007
-excess_adaptive,LMM random-slope LRT (published),78.18021303910791,1.0553158028663733e-17,
-excess_adaptive,"permutation, slope spread (SD)",0.03691580850203868,0.1619190404797601,0.031180748956454243
-excess_adaptive,"permutation, slope spread (IQR)",0.042731566459093887,0.08745627186406797,0.030571220762744156
-excess_adaptive,"permutation, slope spread (MAD)",0.023635321624491397,0.05897051474262868,0.015929471496744615
+signal,test,stat,p
+excess_fixed,LMM random-slope LRT (published),43.26999707322102,4.0182737433582255e-10
+excess_fixed,"permutation (SD), 5 s blocks",0.03649224851673672,0.15992003998001
+excess_fixed,"permutation (IQR), 5 s blocks",0.047534771948267496,0.04597701149425287
+excess_fixed,"permutation (MAD), 5 s blocks",0.04143490313479774,0.0009995002498750624
+excess_adaptive,LMM random-slope LRT (published),78.18021303910791,1.0553158028663733e-17
+excess_adaptive,"permutation (SD), 5 s blocks",0.04809023388387269,0.0814592703648176
+excess_adaptive,"permutation (IQR), 5 s blocks",0.040592952013434117,0.22538730634682658
+excess_adaptive,"permutation (MAD), 5 s blocks",0.025138453436091217,0.09095452273863068
+excess_fixed,"resp moderation, 5 s blocks",-0.007148836444872478,0.21721034474593348
+excess_adaptive,"resp moderation, 5 s blocks",-0.008238127692567664,0.0842811330911642
+excess_fixed,"cal_sd moderation, 5 s blocks",-0.0019092014568248363,0.7536157432550326
+excess_adaptive,"cal_sd moderation, 5 s blocks",0.0019451194369838538,0.7884997702477847
+excess_fixed,"hrv moderation, 5 s blocks",-0.01276154599093448,0.10434743931612174
+excess_adaptive,"hrv moderation, 5 s blocks",-0.008269911819786082,0.2529596304191769

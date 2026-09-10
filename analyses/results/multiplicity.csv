@@ -16,9 +16,9 @@ label controls,real vs reversed (79.5% changed),0.000388,label_controls,False,0.
 validity,"matched-phase, all crossings + time",1.07e-32,matched_phase,True,2.14e-32,True
 validity,"matched-phase, + time^2",1.59e-35,matched_phase,False,4.7699999999999995e-35,True
 validity,"matched-phase, large rings only",1.4e-31,matched_phase,False,1.4e-31,True
-Yerkes-Dodson,"trial-mean quadratic, duration-stratified permutation",0.0125,duration_permutation,True,0.025,True
-Yerkes-Dodson,landmark analysis at L = 30 s,0.0328,landmark_analysis,False,0.0328,True
-Yerkes-Dodson,"hazard quadratic, 5 s-bin fixed effects",3.5e-10,hazard_model,False,1.0499999999999999e-09,True
+Yerkes-Dodson,"trial-mean quadratic, duration-stratified permutation",0.0125,duration_permutation,True,0.037500000000000006,True
+Yerkes-Dodson,landmark analysis at L = 30 s,0.0328,landmark_analysis,False,0.0656,False
+Yerkes-Dodson,"hazard quadratic, non-overlapping 5 s blocks",0.0523,hazard_glmm,False,0.0656,False
 Table 1,% time above band,0.0001,clustered_statistics,False,0.0004,True
 Table 1,% time in band,0.0001,clustered_statistics,False,0.0004,True
 Table 1,mean excursion magnitude,0.0097,clustered_statistics,False,0.0097,True

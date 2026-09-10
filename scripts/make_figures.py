@@ -929,10 +929,10 @@ def figure_7():
     ax = fig.add_subplot(gs[1, 1])
     bc = pd.read_csv(RES / "hazard_glmm_bandcompare.csv")
     bc = bc[bc.model.str.contains("added over", na=False)].set_index("model")
-    label = {"above_adaptive added over above": "adaptive band",
-             "sustained added over above": "sustained ($\\geq$3 s)",
-             "rate added over above": "rate of change",
-             "excess_adaptive added over excess_fixed":
+    label = {"above_adaptive added over above, 5 s blocks": "adaptive band",
+             "sustained added over above, 5 s blocks": "sustained ($\\geq$3 s)",
+             "rate added over above, 5 s blocks": "rate of change",
+             "excess_adaptive added over excess_fixed, 5 s blocks":
                  "graded excess over\nadaptive band"}
     added = [(label[k], float(bc.loc[k, "p"])) for k in label if k in bc.index]
     ys = np.arange(len(added))[::-1]
@@ -945,7 +945,7 @@ def figure_7():
     ax.set_yticks(ys)
     ax.set_yticklabels([a[0] for a in added], fontsize=9)
     ax.set_xlabel(r"$-\log_{10} p$, added over the fixed band"
-                  "\n(discrete-time survival model)")
+                  "\n(non-overlapping 5 s blocks)")
     ax.set_xlim(0, 2.0)
     tidy(ax, grid_axis="x")
     panel(ax, "D", x=-0.30)
