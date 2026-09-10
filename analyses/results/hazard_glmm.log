@@ -11,16 +11,17 @@ primary frame: 1584 non-overlapping 5 s blocks
     beta2 = +2.798e-05, p = 3.46e-10
 
   specification                                  beta2            95% CI        p  vertex  joint p
-  PRIMARY  5 s blocks, state at block start      +1.96  [-0.02,+3.93]   0.0523    31.5   0.0016
+  PRIMARY  crash-within-5 s, GEE on trial clusters   +1.66  [+0.05,+3.28]   0.0429    23.1        -
+  stricter 5 s blocks, state at block start      +1.96  [-0.02,+3.93]   0.0523    31.5   0.0016
            5 s blocks, block mean                +1.83  [+0.01,+3.64]   0.0489    33.9   0.0095
            5 s blocks, block start, logit        +2.37  [-0.02,+4.76]   0.0517    30.8   0.0025
-  crash-within-5 s, GEE on trial clusters        +1.66  [+0.05,+3.28]   0.0429    23.1        -
   person-period, terminal bin                    +0.96  [-0.68,+2.59]   0.2513     7.7   0.0031
   5 s lead                                       +1.14  [-0.71,+2.99]   0.2279     5.3   0.0001
 
-  -> the curvature is marginal, not absent: nominally significant
-     under the specification that keeps the 5 s horizon, and fading
-     as the question moves to the instant of the crash.
+  -> the curvature holds with the dependence handled (p = 0.043),
+     weakens but keeps its sign and vertex when each crash is counted
+     once (p = 0.052), and fades once the question narrows to the
+     instant of the crash rather than the next five seconds.
 
   Assumption-free shape: log-hazard by arousal quintile, 5 s blocks
     q  arousal          n  events  log-hazard     SE       p

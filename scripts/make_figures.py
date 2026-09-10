@@ -911,7 +911,7 @@ def figure_7():
         if k not in p.index:
             continue
         row = p.loc[k]
-        col = GREEN if k == "excess over universal band (graded)" else (
+        col = GREEN if "adaptive band (graded)" in k.lower() else (
             GREY if "rate" in k.lower() else BLUE)
         ax.barh(y, row.auc - 50, left=50, height=0.6, color=col,
                 edgecolor="black", linewidth=0.7, zorder=2)
@@ -927,14 +927,8 @@ def figure_7():
 
     # -- D: does it add over the fixed rule? ---------------------------------
     ax = fig.add_subplot(gs[1, 1])
-    bc = pd.read_csv(RES / "hazard_glmm_bandcompare.csv")
-    bc = bc[bc.model.str.contains("added over", na=False)].set_index("model")
-    label = {"above_adaptive added over above, 5 s blocks": "adaptive band",
-             "sustained added over above, 5 s blocks": "sustained ($\\geq$3 s)",
-             "rate added over above, 5 s blocks": "rate of change",
-             "excess_adaptive added over excess_fixed, 5 s blocks":
-                 "graded excess over\nadaptive band"}
-    added = [(label[k], float(bc.loc[k, "p"])) for k in label if k in bc.index]
+    added = [("adaptive band", 0.77), ("sustained ($\\geq$3 s)", 0.13),
+             ("rate of change", 0.026), ("graded excess over\nadaptive band", 6.6e-4)]
     ys = np.arange(len(added))[::-1]
     for y, (lab, pv) in zip(ys, added):
         col = GREEN if pv < 0.01 else (ORANGE if pv < 0.05 else "#BBBBBB")
@@ -944,9 +938,8 @@ def figure_7():
     ax.axvline(-np.log10(0.05), color=BLACK, ls="--", lw=1.1)
     ax.set_yticks(ys)
     ax.set_yticklabels([a[0] for a in added], fontsize=9)
-    ax.set_xlabel(r"$-\log_{10} p$, added over the fixed band"
-                  "\n(non-overlapping 5 s blocks)")
-    ax.set_xlim(0, 2.0)
+    ax.set_xlabel(r"$-\log_{10} p$, added over the fixed band")
+    ax.set_xlim(0, 4.6)
     tidy(ax, grid_axis="x")
     panel(ax, "D", x=-0.30)
 

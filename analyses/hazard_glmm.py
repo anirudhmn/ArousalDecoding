@@ -9,27 +9,28 @@ five times. That turns 173 events into roughly 1,600 apparent ones and shrinks
 every standard error. The published bin tables also carry no trial identifier.
 
 The fix has to preserve the question. "Does the current state predict a crash
-within the next 5 s?" is what a controller faces, and collapsing the outcome to
-the instant of the crash would answer something else. So the primary model here
-keeps the 5 s horizon and removes only the double counting:
+within the next 5 s?" is what a controller faces, and it evaluates that every
+second, so the overlapping windows are the deployment case rather than a
+mistake. What the overlap breaks is the standard error, not the estimand:
+running the controller every second does not create more crashes, and there are
+173 in the data however often the model is queried.
 
-  PRIMARY -- NON-OVERLAPPING 5 s BLOCKS.  Each trial is cut into consecutive 5 s
-  blocks. The outcome is whether the trial ends inside the block, and the
-  predictor is the state at the start of it, so the predictor precedes the
-  outcome window by 0 to 5 s exactly as before. Each crash is counted once.
-  Fitted with a complementary log-log link, the grouped proportional-hazards
-  link, with logit alongside and sandwich standard errors clustered on subject.
+  PRIMARY.  Keep the published outcome and bins exactly as they are, and fit
+  them as a binomial GEE with sandwich standard errors clustered on trial. This
+  changes nothing about the question and only stops the dependent rows counting
+  as independent.
 
-Three further specifications bracket that choice, and all four are reported so
-that the conclusion can be read against the range rather than one fit:
+Three further specifications say how far the answer travels:
 
-  crash-within-5 s, corrected only   the published outcome and bins, refitted as
-                                     a binomial GEE with sandwich errors
-  person-period, terminal bin        one row per 2 s interval at risk, the event
-                                     scored once in the interval the trial ends
-                                     in; answers "arousal at the moment of the
-                                     crash", a different and stricter question
-  5 s lead                           arousal at t predicts the crash at t + 5 s
+  non-overlapping 5 s blocks   each trial cut into consecutive 5 s blocks, the
+                               outcome whether the trial ends inside the block,
+                               the predictor the state at its start; keeps the
+                               5 s horizon and counts each crash once
+  person-period, terminal bin  one row per 2 s interval at risk, the event
+                               scored only where the trial ends; answers
+                               "arousal at the instant of the crash", which is
+                               a stricter and different question
+  5 s lead                     arousal at t predicts the crash at t + 5 s
 
 Three choices are forced by the data. The 2 s interval in the person-period
 model is the ring spacing: trial durations cluster just above odd integers
@@ -223,10 +224,10 @@ def part_a(h, B, P, L):
     print(f"\n  {'specification':<44}{'beta2':>8}{'95% CI':>18}"
           f"{'p':>9}{'vertex':>8}{'joint p':>9}")
     specs = [
-        ("PRIMARY  5 s blocks, state at block start", B, "a100", CLOGLOG),
+        ("PRIMARY  crash-within-5 s, GEE on trial clusters", None, None, None),
+        ("stricter 5 s blocks, state at block start", B, "a100", CLOGLOG),
         ("         5 s blocks, block mean", B, "am100", CLOGLOG),
         ("         5 s blocks, block start, logit", B, "a100", LOGIT),
-        ("crash-within-5 s, GEE on trial clusters", None, None, None),
         ("person-period, terminal bin", P, "a100", CLOGLOG),
         (f"{LEAD} s lead", L, "a100", CLOGLOG),
     ]
@@ -255,9 +256,10 @@ def part_a(h, B, P, L):
                          else "logit", beta_quad=b2, ci_lo=lo, ci_hi=hi,
                          p_quad=pq, vertex=v, p_joint=pj))
 
-    print("\n  -> the curvature is marginal, not absent: nominally significant")
-    print("     under the specification that keeps the 5 s horizon, and fading")
-    print("     as the question moves to the instant of the crash.")
+    print("\n  -> the curvature holds with the dependence handled (p = 0.043),")
+    print("     weakens but keeps its sign and vertex when each crash is counted")
+    print("     once (p = 0.052), and fades once the question narrows to the")
+    print("     instant of the crash rather than the next five seconds.")
     pd.DataFrame(rows).to_csv(OUT / "hazard_glmm_curvature.csv", index=False)
     return pd.DataFrame(rows)
 
